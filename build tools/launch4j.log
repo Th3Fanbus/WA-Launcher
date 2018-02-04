@@ -1,0 +1,442 @@
+
+
+Version:	3.7
+CmdLine:	C:\Users\jstrusz\Desktop\build\t0rched.exe --l4j-debug
+WOW64:		yes
+Working dir:	C:\Users\jstrusz\Desktop\build\.
+64-bit search:	SOFTWARE\JavaSoft\Java Runtime Environment...
+Check:		SOFTWARE\JavaSoft\Java Runtime Environment\1.8
+Check launcher:	C:\Program Files\Java\jre1.8.0_91\bin\javaw.exe (OK)
+Match:		1.8
+Check:		SOFTWARE\JavaSoft\Java Runtime Environment\1.8.0_91
+Ignore:		1.8.0_91
+64-bit search:	SOFTWARE\JavaSoft\Java Development Kit...
+Check:		SOFTWARE\JavaSoft\Java Development Kit\1.7
+Ignore:		1.7
+Check:		SOFTWARE\JavaSoft\Java Development Kit\1.7.0_79
+Ignore:		1.7.0_79
+Check:		SOFTWARE\JavaSoft\Java Development Kit\1.8
+Ignore:		1.8
+Check:		SOFTWARE\JavaSoft\Java Development Kit\1.8.0_91
+Ignore:		1.8.0_91
+Runtime used:	1.8 (64-bit)
+Launcher:	C:\Program Files\Java\jre1.8.0_91\bin\javaw.exe
+Launcher args:	-jar "C:\Users\jstrusz\Desktop\build\t0rched.exe"
+Args length:	49/32768 chars
+Exit code:	259
+
+
+Version:	3.7
+CmdLine:	C:\Users\jstrusz\Desktop\build\t0rched.exe --l4j-debug
+WOW64:		yes
+Working dir:	C:\Users\jstrusz\Desktop\build\.
+64-bit search:	SOFTWARE\JavaSoft\Java Runtime Environment...
+Check:		SOFTWARE\JavaSoft\Java Runtime Environment\1.8
+Check launcher:	C:\Program Files\Java\jre1.8.0_91\bin\javaw.exe (OK)
+Match:		1.8
+Check:		SOFTWARE\JavaSoft\Java Runtime Environment\1.8.0_91
+Ignore:		1.8.0_91
+64-bit search:	SOFTWARE\JavaSoft\Java Development Kit...
+Check:		SOFTWARE\JavaSoft\Java Development Kit\1.7
+Ignore:		1.7
+Check:		SOFTWARE\JavaSoft\Java Development Kit\1.7.0_79
+Ignore:		1.7.0_79
+Check:		SOFTWARE\JavaSoft\Java Development Kit\1.8
+Ignore:		1.8
+Check:		SOFTWARE\JavaSoft\Java Development Kit\1.8.0_91
+Ignore:		1.8.0_91
+Runtime used:	1.8 (64-bit)
+Launcher:	C:\Program Files\Java\jre1.8.0_91\bin\javaw.exe
+Launcher args:	-jar "C:\Users\jstrusz\Desktop\build\t0rched.exe"
+Args length:	49/32768 chars
+Exit code:	259
+
+
+Version:	3.7
+CmdLine:	C:\Users\jstrusz\Desktop\build\t0rched.exe --l4j-debug
+WOW64:		yes
+Working dir:	C:\Users\jstrusz\Desktop\build\.
+64-bit search:	SOFTWARE\JavaSoft\Java Runtime Environment...
+Check:		SOFTWARE\JavaSoft\Java Runtime Environment\1.8
+Check launcher:	C:\Program Files\Java\jre1.8.0_91\bin\javaw.exe (OK)
+Match:		1.8
+Check:		SOFTWARE\JavaSoft\Java Runtime Environment\1.8.0_91
+Ignore:		1.8.0_91
+64-bit search:	SOFTWARE\JavaSoft\Java Development Kit...
+Check:		SOFTWARE\JavaSoft\Java Development Kit\1.7
+Ignore:		1.7
+Check:		SOFTWARE\JavaSoft\Java Development Kit\1.7.0_79
+Ignore:		1.7.0_79
+Check:		SOFTWARE\JavaSoft\Java Development Kit\1.8
+Ignore:		1.8
+Check:		SOFTWARE\JavaSoft\Java Development Kit\1.8.0_91
+Ignore:		1.8.0_91
+Runtime used:	1.8 (64-bit)
+Launcher:	C:\Program Files\Java\jre1.8.0_91\bin\javaw.exe
+Launcher args:	-jar "C:\Users\jstrusz\Desktop\build\t0rched.exe"
+Args length:	49/32768 chars
+Exit code:	259
+
+
+Version:	3.7
+CmdLine:	C:\Users\jstrusz\Desktop\build\t0rched.exe --l4j-debug
+WOW64:		yes
+Working dir:	C:\Users\jstrusz\Desktop\build\.
+64-bit search:	SOFTWARE\JavaSoft\Java Runtime Environment...
+Check:		SOFTWARE\JavaSoft\Java Runtime Environment\1.8
+Check launcher:	C:\Program Files\Java\jre1.8.0_91\bin\javaw.exe (OK)
+Match:		1.8
+Check:		SOFTWARE\JavaSoft\Java Runtime Environment\1.8.0_91
+Ignore:		1.8.0_91
+64-bit search:	SOFTWARE\JavaSoft\Java Development Kit...
+Check:		SOFTWARE\JavaSoft\Java Development Kit\1.7
+Ignore:		1.7
+Check:		SOFTWARE\JavaSoft\Java Development Kit\1.7.0_79
+Ignore:		1.7.0_79
+Check:		SOFTWARE\JavaSoft\Java Development Kit\1.8
+Ignore:		1.8
+Check:		SOFTWARE\JavaSoft\Java Development Kit\1.8.0_91
+Ignore:		1.8.0_91
+Runtime used:	1.8 (64-bit)
+Launcher:	C:\Program Files\Java\jre1.8.0_91\bin\javaw.exe
+Launcher args:	-jar "C:\Users\jstrusz\Desktop\build\t0rched.exe"
+Args length:	49/32768 chars
+Exit code:	259
+
+
+Version:	3.7
+CmdLine:	C:\Users\jstrusz\Desktop\t0rched.com-launcher-pack\build tools\t0rched.exe --l4j-debug
+WOW64:		yes
+Working dir:	C:\Users\jstrusz\Desktop\t0rched.com-launcher-pack\build tools\.
+64-bit search:	SOFTWARE\JavaSoft\Java Runtime Environment...
+Check:		SOFTWARE\JavaSoft\Java Runtime Environment\1.8
+Check launcher:	C:\Program Files\Java\jre1.8.0_91\bin\javaw.exe (OK)
+Match:		1.8
+Check:		SOFTWARE\JavaSoft\Java Runtime Environment\1.8.0_91
+Ignore:		1.8.0_91
+64-bit search:	SOFTWARE\JavaSoft\Java Development Kit...
+Check:		SOFTWARE\JavaSoft\Java Development Kit\1.7
+Ignore:		1.7
+Check:		SOFTWARE\JavaSoft\Java Development Kit\1.7.0_79
+Ignore:		1.7.0_79
+Check:		SOFTWARE\JavaSoft\Java Development Kit\1.8
+Ignore:		1.8
+Check:		SOFTWARE\JavaSoft\Java Development Kit\1.8.0_91
+Ignore:		1.8.0_91
+Runtime used:	1.8 (64-bit)
+Launcher:	C:\Program Files\Java\jre1.8.0_91\bin\javaw.exe
+Launcher args:	-jar "C:\Users\jstrusz\Desktop\t0rched.com-launcher-pack\build tools\t0rched.exe"
+Args length:	81/32768 chars
+Exit code:	259
+
+
+Version:	3.7
+CmdLine:	C:\Users\jstrusz\Desktop\t0rched.com-launcher-pack\build tools\t0rched.exe --l4j-debug
+WOW64:		yes
+Working dir:	C:\Users\jstrusz\Desktop\t0rched.com-launcher-pack\build tools\.
+64-bit search:	SOFTWARE\JavaSoft\Java Runtime Environment...
+Check:		SOFTWARE\JavaSoft\Java Runtime Environment\1.8
+Check launcher:	C:\Program Files\Java\jre1.8.0_91\bin\javaw.exe (OK)
+Match:		1.8
+Check:		SOFTWARE\JavaSoft\Java Runtime Environment\1.8.0_91
+Ignore:		1.8.0_91
+64-bit search:	SOFTWARE\JavaSoft\Java Development Kit...
+Check:		SOFTWARE\JavaSoft\Java Development Kit\1.7
+Ignore:		1.7
+Check:		SOFTWARE\JavaSoft\Java Development Kit\1.7.0_79
+Ignore:		1.7.0_79
+Check:		SOFTWARE\JavaSoft\Java Development Kit\1.8
+Ignore:		1.8
+Check:		SOFTWARE\JavaSoft\Java Development Kit\1.8.0_91
+Ignore:		1.8.0_91
+Runtime used:	1.8 (64-bit)
+Launcher:	C:\Program Files\Java\jre1.8.0_91\bin\javaw.exe
+Launcher args:	-jar "C:\Users\jstrusz\Desktop\t0rched.com-launcher-pack\build tools\t0rched.exe"
+Args length:	81/32768 chars
+Exit code:	0
+
+
+Version:	3.7
+CmdLine:	C:\Users\jstrusz\Desktop\t0rched.com-launcher-pack\build tools\t0rched.exe --l4j-debug
+WOW64:		yes
+Working dir:	C:\Users\jstrusz\Desktop\t0rched.com-launcher-pack\build tools\.
+64-bit search:	SOFTWARE\JavaSoft\Java Runtime Environment...
+Check:		SOFTWARE\JavaSoft\Java Runtime Environment\1.8
+Check launcher:	C:\Program Files\Java\jre1.8.0_91\bin\javaw.exe (OK)
+Match:		1.8
+Check:		SOFTWARE\JavaSoft\Java Runtime Environment\1.8.0_91
+Ignore:		1.8.0_91
+64-bit search:	SOFTWARE\JavaSoft\Java Development Kit...
+Check:		SOFTWARE\JavaSoft\Java Development Kit\1.7
+Ignore:		1.7
+Check:		SOFTWARE\JavaSoft\Java Development Kit\1.7.0_79
+Ignore:		1.7.0_79
+Check:		SOFTWARE\JavaSoft\Java Development Kit\1.8
+Ignore:		1.8
+Check:		SOFTWARE\JavaSoft\Java Development Kit\1.8.0_91
+Ignore:		1.8.0_91
+Runtime used:	1.8 (64-bit)
+Launcher:	C:\Program Files\Java\jre1.8.0_91\bin\javaw.exe
+Launcher args:	-jar "C:\Users\jstrusz\Desktop\t0rched.com-launcher-pack\build tools\t0rched.exe"
+Args length:	81/32768 chars
+Exit code:	0
+
+
+Version:	3.7
+CmdLine:	C:\Users\jstrusz\Desktop\t0rched.com-launcher-pack\build tools\t0rched.exe --l4j-debug
+WOW64:		yes
+Working dir:	C:\Users\jstrusz\Desktop\t0rched.com-launcher-pack\build tools\.
+64-bit search:	SOFTWARE\JavaSoft\Java Runtime Environment...
+Check:		SOFTWARE\JavaSoft\Java Runtime Environment\1.8
+Check launcher:	C:\Program Files\Java\jre1.8.0_91\bin\javaw.exe (OK)
+Match:		1.8
+Check:		SOFTWARE\JavaSoft\Java Runtime Environment\1.8.0_91
+Ignore:		1.8.0_91
+64-bit search:	SOFTWARE\JavaSoft\Java Development Kit...
+Check:		SOFTWARE\JavaSoft\Java Development Kit\1.7
+Ignore:		1.7
+Check:		SOFTWARE\JavaSoft\Java Development Kit\1.7.0_79
+Ignore:		1.7.0_79
+Check:		SOFTWARE\JavaSoft\Java Development Kit\1.8
+Ignore:		1.8
+Check:		SOFTWARE\JavaSoft\Java Development Kit\1.8.0_91
+Ignore:		1.8.0_91
+Runtime used:	1.8 (64-bit)
+Launcher:	C:\Program Files\Java\jre1.8.0_91\bin\javaw.exe
+Launcher args:	-jar "C:\Users\jstrusz\Desktop\t0rched.com-launcher-pack\build tools\t0rched.exe"
+Args length:	81/32768 chars
+Exit code:	0
+
+
+Version:	3.7
+CmdLine:	C:\Users\jstrusz\Desktop\t0rched.com-launcher-pack\build tools\t0rched.exe --l4j-debug
+WOW64:		yes
+Working dir:	C:\Users\jstrusz\Desktop\t0rched.com-launcher-pack\build tools\.
+64-bit search:	SOFTWARE\JavaSoft\Java Runtime Environment...
+Check:		SOFTWARE\JavaSoft\Java Runtime Environment\1.8
+Check launcher:	C:\Program Files\Java\jre1.8.0_91\bin\javaw.exe (OK)
+Match:		1.8
+Check:		SOFTWARE\JavaSoft\Java Runtime Environment\1.8.0_91
+Ignore:		1.8.0_91
+64-bit search:	SOFTWARE\JavaSoft\Java Development Kit...
+Check:		SOFTWARE\JavaSoft\Java Development Kit\1.7
+Ignore:		1.7
+Check:		SOFTWARE\JavaSoft\Java Development Kit\1.7.0_79
+Ignore:		1.7.0_79
+Check:		SOFTWARE\JavaSoft\Java Development Kit\1.8
+Ignore:		1.8
+Check:		SOFTWARE\JavaSoft\Java Development Kit\1.8.0_91
+Ignore:		1.8.0_91
+Runtime used:	1.8 (64-bit)
+Launcher:	C:\Program Files\Java\jre1.8.0_91\bin\javaw.exe
+Launcher args:	-jar "C:\Users\jstrusz\Desktop\t0rched.com-launcher-pack\build tools\t0rched.exe"
+Args length:	81/32768 chars
+Exit code:	0
+
+
+Version:	3.7
+CmdLine:	C:\Users\jstrusz\Desktop\t0rched.com-launcher-pack\build tools\t0rched.exe --l4j-debug
+WOW64:		yes
+Working dir:	C:\Users\jstrusz\Desktop\t0rched.com-launcher-pack\build tools\.
+64-bit search:	SOFTWARE\JavaSoft\Java Runtime Environment...
+Check:		SOFTWARE\JavaSoft\Java Runtime Environment\1.8
+Check launcher:	C:\Program Files\Java\jre1.8.0_91\bin\javaw.exe (OK)
+Match:		1.8
+Check:		SOFTWARE\JavaSoft\Java Runtime Environment\1.8.0_91
+Ignore:		1.8.0_91
+64-bit search:	SOFTWARE\JavaSoft\Java Development Kit...
+Check:		SOFTWARE\JavaSoft\Java Development Kit\1.7
+Ignore:		1.7
+Check:		SOFTWARE\JavaSoft\Java Development Kit\1.7.0_79
+Ignore:		1.7.0_79
+Check:		SOFTWARE\JavaSoft\Java Development Kit\1.8
+Ignore:		1.8
+Check:		SOFTWARE\JavaSoft\Java Development Kit\1.8.0_91
+Ignore:		1.8.0_91
+Runtime used:	1.8 (64-bit)
+Launcher:	C:\Program Files\Java\jre1.8.0_91\bin\javaw.exe
+Launcher args:	-jar "C:\Users\jstrusz\Desktop\t0rched.com-launcher-pack\build tools\t0rched.exe"
+Args length:	81/32768 chars
+Exit code:	0
+
+
+Version:	3.7
+CmdLine:	C:\Users\jstrusz\Desktop\t0rched.com-launcher-pack\build tools\t0rched.exe --l4j-debug
+WOW64:		yes
+Working dir:	C:\Users\jstrusz\Desktop\t0rched.com-launcher-pack\build tools\.
+64-bit search:	SOFTWARE\JavaSoft\Java Runtime Environment...
+Check:		SOFTWARE\JavaSoft\Java Runtime Environment\1.8
+Check launcher:	C:\Program Files\Java\jre1.8.0_91\bin\javaw.exe (OK)
+Match:		1.8
+Check:		SOFTWARE\JavaSoft\Java Runtime Environment\1.8.0_91
+Ignore:		1.8.0_91
+64-bit search:	SOFTWARE\JavaSoft\Java Development Kit...
+Check:		SOFTWARE\JavaSoft\Java Development Kit\1.7
+Ignore:		1.7
+Check:		SOFTWARE\JavaSoft\Java Development Kit\1.7.0_79
+Ignore:		1.7.0_79
+Check:		SOFTWARE\JavaSoft\Java Development Kit\1.8
+Ignore:		1.8
+Check:		SOFTWARE\JavaSoft\Java Development Kit\1.8.0_91
+Ignore:		1.8.0_91
+Runtime used:	1.8 (64-bit)
+Launcher:	C:\Program Files\Java\jre1.8.0_91\bin\javaw.exe
+Launcher args:	-jar "C:\Users\jstrusz\Desktop\t0rched.com-launcher-pack\build tools\t0rched.exe"
+Args length:	81/32768 chars
+Exit code:	0
+
+
+Version:	3.7
+CmdLine:	C:\Users\jstrusz\Desktop\t0rched.com-launcher-pack\build tools\t0rched.exe --l4j-debug
+WOW64:		yes
+Working dir:	C:\Users\jstrusz\Desktop\t0rched.com-launcher-pack\build tools\.
+64-bit search:	SOFTWARE\JavaSoft\Java Runtime Environment...
+Check:		SOFTWARE\JavaSoft\Java Runtime Environment\1.8
+Check launcher:	C:\Program Files\Java\jre1.8.0_91\bin\javaw.exe (OK)
+Match:		1.8
+Check:		SOFTWARE\JavaSoft\Java Runtime Environment\1.8.0_91
+Ignore:		1.8.0_91
+64-bit search:	SOFTWARE\JavaSoft\Java Development Kit...
+Check:		SOFTWARE\JavaSoft\Java Development Kit\1.7
+Ignore:		1.7
+Check:		SOFTWARE\JavaSoft\Java Development Kit\1.7.0_79
+Ignore:		1.7.0_79
+Check:		SOFTWARE\JavaSoft\Java Development Kit\1.8
+Ignore:		1.8
+Check:		SOFTWARE\JavaSoft\Java Development Kit\1.8.0_91
+Ignore:		1.8.0_91
+Runtime used:	1.8 (64-bit)
+Launcher:	C:\Program Files\Java\jre1.8.0_91\bin\javaw.exe
+Launcher args:	-jar "C:\Users\jstrusz\Desktop\t0rched.com-launcher-pack\build tools\t0rched.jar"
+Args length:	81/32768 chars
+Exit code:	0
+
+
+Version:	3.7
+CmdLine:	C:\Users\jstrusz\Desktop\t0rched.com-launcher-pack\build tools\t0rched.exe --l4j-debug
+WOW64:		yes
+Working dir:	C:\Users\jstrusz\Desktop\t0rched.com-launcher-pack\build tools\.
+64-bit search:	SOFTWARE\JavaSoft\Java Runtime Environment...
+Check:		SOFTWARE\JavaSoft\Java Runtime Environment\1.8
+Check launcher:	C:\Program Files\Java\jre1.8.0_91\bin\javaw.exe (OK)
+Match:		1.8
+Check:		SOFTWARE\JavaSoft\Java Runtime Environment\1.8.0_91
+Ignore:		1.8.0_91
+64-bit search:	SOFTWARE\JavaSoft\Java Development Kit...
+Check:		SOFTWARE\JavaSoft\Java Development Kit\1.7
+Ignore:		1.7
+Check:		SOFTWARE\JavaSoft\Java Development Kit\1.7.0_79
+Ignore:		1.7.0_79
+Check:		SOFTWARE\JavaSoft\Java Development Kit\1.8
+Ignore:		1.8
+Check:		SOFTWARE\JavaSoft\Java Development Kit\1.8.0_91
+Ignore:		1.8.0_91
+Runtime used:	1.8 (64-bit)
+Launcher:	C:\Program Files\Java\jre1.8.0_91\bin\javaw.exe
+Launcher args:	-jar "C:\Users\jstrusz\Desktop\t0rched.com-launcher-pack\build tools\t0rched.exe"
+Args length:	81/32768 chars
+Exit code:	0
+
+
+Version:	3.7
+CmdLine:	C:\Users\jstrusz\Desktop\t0rched.com-launcher-pack\build tools\t0rched.exe --l4j-debug
+WOW64:		yes
+Working dir:	C:\Users\jstrusz\Desktop\t0rched.com-launcher-pack\build tools\.
+64-bit search:	SOFTWARE\JavaSoft\Java Runtime Environment...
+Check:		SOFTWARE\JavaSoft\Java Runtime Environment\1.8
+Check launcher:	C:\Program Files\Java\jre1.8.0_91\bin\javaw.exe (OK)
+Match:		1.8
+Check:		SOFTWARE\JavaSoft\Java Runtime Environment\1.8.0_91
+Ignore:		1.8.0_91
+64-bit search:	SOFTWARE\JavaSoft\Java Development Kit...
+Check:		SOFTWARE\JavaSoft\Java Development Kit\1.7
+Ignore:		1.7
+Check:		SOFTWARE\JavaSoft\Java Development Kit\1.7.0_79
+Ignore:		1.7.0_79
+Check:		SOFTWARE\JavaSoft\Java Development Kit\1.8
+Ignore:		1.8
+Check:		SOFTWARE\JavaSoft\Java Development Kit\1.8.0_91
+Ignore:		1.8.0_91
+Runtime used:	1.8 (64-bit)
+Launcher:	C:\Program Files\Java\jre1.8.0_91\bin\javaw.exe
+Launcher args:	-jar "C:\Users\jstrusz\Desktop\t0rched.com-launcher-pack\build tools\t0rched.exe"
+Args length:	81/32768 chars
+Exit code:	0
+
+
+Version:	3.7
+CmdLine:	C:\Users\jstrusz\Desktop\t0rched.com-launcher-pack\build tools\t0rched.exe --l4j-debug
+WOW64:		yes
+Working dir:	C:\Users\jstrusz\Desktop\t0rched.com-launcher-pack\build tools\.
+64-bit search:	SOFTWARE\JavaSoft\Java Runtime Environment...
+Check:		SOFTWARE\JavaSoft\Java Runtime Environment\1.8
+Check launcher:	C:\Program Files\Java\jre1.8.0_91\bin\javaw.exe (OK)
+Match:		1.8
+Check:		SOFTWARE\JavaSoft\Java Runtime Environment\1.8.0_91
+Ignore:		1.8.0_91
+64-bit search:	SOFTWARE\JavaSoft\Java Development Kit...
+Check:		SOFTWARE\JavaSoft\Java Development Kit\1.7
+Ignore:		1.7
+Check:		SOFTWARE\JavaSoft\Java Development Kit\1.7.0_79
+Ignore:		1.7.0_79
+Check:		SOFTWARE\JavaSoft\Java Development Kit\1.8
+Ignore:		1.8
+Check:		SOFTWARE\JavaSoft\Java Development Kit\1.8.0_91
+Ignore:		1.8.0_91
+Runtime used:	1.8 (64-bit)
+Launcher:	C:\Program Files\Java\jre1.8.0_91\bin\javaw.exe
+Launcher args:	-jar "C:\Users\jstrusz\Desktop\t0rched.com-launcher-pack\build tools\t0rched.exe"
+Args length:	81/32768 chars
+Exit code:	0
+
+
+Version:	3.10
+CmdLine:	C:\Users\Anonymous\Desktop\New folder\build tools\WorldAutomation.exe --l4j-debug
+WOW64:		yes
+Working dir:	C:\Users\Anonymous\Desktop\New folder\build tools\.
+Java min ver:	1.7.0
+Java max ver:	1.8.0
+64-bit search:	SOFTWARE\JavaSoft\Java Runtime Environment...
+Check:		SOFTWARE\JavaSoft\Java Runtime Environment\1.8
+Check launcher:	C:\Program Files\Java\jre1.8.0_131\bin\javaw.exe (OK)
+Match:		1.8
+Check:		SOFTWARE\JavaSoft\Java Runtime Environment\1.8.0_131
+Ignore:		1.8.0_131
+64-bit search:	SOFTWARE\JavaSoft\Java Development Kit...
+Check:		SOFTWARE\JavaSoft\Java Development Kit\1.8
+Ignore:		1.8
+Check:		SOFTWARE\JavaSoft\Java Development Kit\1.8.0_131
+Ignore:		1.8.0_131
+64-bit search:	SOFTWARE\JavaSoft\JRE...
+64-bit search:	SOFTWARE\JavaSoft\JDK...
+Runtime used:	1.8 (64-bit)
+Launcher:	C:\Program Files\Java\jre1.8.0_131\bin\javaw.exe
+Launcher args:	-jar "C:\Users\Anonymous\Desktop\New folder\build tools\WorldAutomation.exe"
+Args length:	76/32768 chars
+Exit code:	0
+
+
+Version:	3.10
+CmdLine:	C:\Users\Anonymous\Desktop\New folder\build tools\WorldAutomation.exe --l4j-debug
+WOW64:		yes
+Working dir:	C:\Users\Anonymous\Desktop\New folder\build tools\.
+Java min ver:	1.7.0
+Java max ver:	1.8.0
+64-bit search:	SOFTWARE\JavaSoft\Java Runtime Environment...
+Check:		SOFTWARE\JavaSoft\Java Runtime Environment\1.8
+Check launcher:	C:\Program Files\Java\jre1.8.0_131\bin\javaw.exe (OK)
+Match:		1.8
+Check:		SOFTWARE\JavaSoft\Java Runtime Environment\1.8.0_131
+Ignore:		1.8.0_131
+64-bit search:	SOFTWARE\JavaSoft\Java Development Kit...
+Check:		SOFTWARE\JavaSoft\Java Development Kit\1.8
+Ignore:		1.8
+Check:		SOFTWARE\JavaSoft\Java Development Kit\1.8.0_131
+Ignore:		1.8.0_131
+64-bit search:	SOFTWARE\JavaSoft\JRE...
+64-bit search:	SOFTWARE\JavaSoft\JDK...
+Runtime used:	1.8 (64-bit)
+Launcher:	C:\Program Files\Java\jre1.8.0_131\bin\javaw.exe
+Launcher args:	-jar "C:\Users\Anonymous\Desktop\New folder\build tools\WorldAutomation.exe"
+Args length:	76/32768 chars
+Exit code:	0
