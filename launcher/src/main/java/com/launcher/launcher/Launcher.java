@@ -419,24 +419,25 @@ public final class Launcher {
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-				String version = System.getProperty("sun.arch.data.model");
-				if(version.contains("63")) {
-					try {
-						Launcher launcher = createFromArguments(args);
-						SwingHelper.setSwingProperties(tr("launcher.appTitle", launcher.getVersion()));
-						UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-						launcher.showLauncherWindow();
-					} catch (Throwable t) {
-						log.log(Level.WARNING, "Load failure", t);
-						SwingHelper.showErrorDialog(null, "Uh oh! The updater couldn't be opened because a " +
-								"problem was encountered.", "Launcher error", t);
-					}
-				} else {
-					SwingHelper.showErrorDialog(null, "Uh oh! You need 64-Bit Java 8 Minimum!", "WorldAutomation.Net");
-					try {
-						Desktop.getDesktop().browse(new URI("https://java.com/en/download/"));
-					} catch (Exception e) { }
-				}
+                String version = System.getProperty("sun.arch.data.model");
+				log.log(Level.INFO, "Java version string: " + version);
+                if(version.contains("64")) {
+                    try {
+                        Launcher launcher = createFromArguments(args);
+                        SwingHelper.setSwingProperties(tr("launcher.appTitle", launcher.getVersion()));
+                        UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+                        launcher.showLauncherWindow();
+                    } catch (Throwable t) {
+                        log.log(Level.WARNING, "Load failure", t);
+                        SwingHelper.showErrorDialog(null, "Uh oh! The updater couldn't be opened because a " +
+                                "problem was encountered.", "Launcher error", t);
+                    }
+                } else {
+                    SwingHelper.showErrorDialog(null, "Uh oh! You need 64-Bit Java 8 Minimum!", "WorldAutomation.Net");
+                    try {
+                        Desktop.getDesktop().browse(new URI("https://java.com/en/download/"));
+                    } catch (Exception e) { }
+                }
             }
         });
 

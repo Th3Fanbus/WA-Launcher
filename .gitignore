@@ -149,3 +149,6 @@ $RECYCLE.BIN/
 
 # Apple files
 .DS_Store
+
+# Compiled jar files which change constantly
+launcher*.jar
