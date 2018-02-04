@@ -8,7 +8,6 @@ package com.launcher.launcher.persistence;
 
 import com.fasterxml.jackson.core.PrettyPrinter;
 import com.fasterxml.jackson.core.util.DefaultPrettyPrinter;
-import com.fasterxml.jackson.core.util.DefaultPrettyPrinter.Lf2SpacesIndenter;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.io.ByteSink;
 import com.google.common.io.ByteSource;
@@ -28,7 +27,6 @@ import java.util.logging.Level;
  * Simple persistence framework that can read an object from a file, bind
  * that object to that file, and allow any code having a reference to the
  * object make changes to the object and save those changes back to disk.
- * </p>
  * For example:
  * <pre>config = Persistence.load(file, Configuration.class);
  * config.changeSomething();
@@ -43,7 +41,7 @@ public final class Persistence {
 
     static {
         L2F_LIST_PRETTY_PRINTER = new DefaultPrettyPrinter();
-        L2F_LIST_PRETTY_PRINTER.indentArraysWith(Lf2SpacesIndenter.instance);
+        //L2F_LIST_PRETTY_PRINTER.indentArraysWith(new Indenter());
     }
 
     private Persistence() {
@@ -124,10 +122,7 @@ public final class Persistence {
 
             try {
                 object = cls.newInstance();
-            } catch (InstantiationException e1) {
-                throw new RuntimeException(
-                        "Failed to construct object with no-arg constructor", e1);
-            } catch (IllegalAccessException e1) {
+            } catch (InstantiationException | IllegalAccessException e1) {
                 throw new RuntimeException(
                         "Failed to construct object with no-arg constructor", e1);
             }
@@ -239,6 +234,7 @@ public final class Persistence {
      *
      * @param object the object
      * @param prettyPrinter a pretty printer to use, or null
+     * @return 
      * @throws java.io.IOException on I/O error
      */
     public static String writeValueAsString(Object object, PrettyPrinter prettyPrinter) throws IOException {

@@ -384,6 +384,9 @@ public final class Launcher {
      * @throws IOException throw on an I/O error
      */
     public static Launcher createFromArguments(String[] args) throws ParameterException, IOException {
+        String version = System.getProperty("sun.arch.data.model");
+        log.log(Level.INFO, "Java version string: {0}", version);
+        
         LauncherArguments options = new LauncherArguments();
         //new JCommander(options, args);
 
