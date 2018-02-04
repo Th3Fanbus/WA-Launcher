@@ -156,3 +156,9 @@ launcher*.jar
 # Launcher folders
 launcher/instances/
 launcher-main/instances/
+launcher-main/build/distributions/
+launcher-main/build/scripts/
+launcher-main/build/scriptsShadow/
+launcher/build/distributions/
+launcher/build/scripts/
+launcher/build/scriptsShadow/

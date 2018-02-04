@@ -17,42 +17,34 @@ import java.net.URI;
 
 @Log
 public class FancyLauncher {
+    
 
     public static void main(final String[] args) {
         Launcher.setupLogger();
-
+        
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-                String version = System.getProperty("sun.arch.data.model");
-				log.log(Level.INFO, "Java version string: " + version);
-                if(version.contains("64")) {
-	                try {
-	                    Thread.currentThread().setContextClassLoader(FancyLauncher.class.getClassLoader());
-	                    UIManager.getLookAndFeelDefaults().put("ClassLoader", FancyLauncher.class.getClassLoader());
-	                    UIManager.getDefaults().put("SplitPane.border", BorderFactory.createEmptyBorder());
-	                    JFrame.setDefaultLookAndFeelDecorated(true);
-	                    JDialog.setDefaultLookAndFeelDecorated(true);
-	                    System.setProperty("sun.awt.noerasebackground", "true");
-	                    System.setProperty("substancelaf.windowRoundedCorners", "false");
-	
-	                    if (!SwingHelper.setLookAndFeel("com.launcher.launcher.skin.LauncherLookAndFeel")) {
-	                        UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-	                    }
-	
-	                    Launcher launcher = Launcher.createFromArguments(args);
-	                    launcher.setMainWindowSupplier(new CustomWindowSupplier(launcher));
-	                    launcher.showLauncherWindow();
-	                } catch (Throwable t) {
-	                    log.log(Level.WARNING, "Load failure", t);
-	                    SwingHelper.showErrorDialog(null, "Uh oh! The updater couldn't be opened because a " +
-	                            "problem was encountered.", "Launcher error", t);
-	                }
-                } else {
-                    SwingHelper.showErrorDialog(null, "Uh oh! You need 64-Bit Java 8 Minimum!", "WorldAutomation.Net");
-                    try {
-                        Desktop.getDesktop().browse(new URI("https://java.com/en/download/"));
-                    } catch (Exception e) { }
+	        try {
+                    Thread.currentThread().setContextClassLoader(FancyLauncher.class.getClassLoader());
+                    UIManager.getLookAndFeelDefaults().put("ClassLoader", FancyLauncher.class.getClassLoader());
+                    UIManager.getDefaults().put("SplitPane.border", BorderFactory.createEmptyBorder());
+                    JFrame.setDefaultLookAndFeelDecorated(true);
+                    JDialog.setDefaultLookAndFeelDecorated(true);
+                    System.setProperty("sun.awt.noerasebackground", "true");
+                    System.setProperty("substancelaf.windowRoundedCorners", "false");
+
+                    if (!SwingHelper.setLookAndFeel("com.launcher.launcher.skin.LauncherLookAndFeel")) {
+                        UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+                    }
+
+                    Launcher launcher = Launcher.createFromArguments(args);
+                    launcher.setMainWindowSupplier(new CustomWindowSupplier(launcher));
+                    launcher.showLauncherWindow();
+                } catch (Throwable t) {
+                    log.log(Level.WARNING, "Load failure", t);
+                    SwingHelper.showErrorDialog(null, "Uh oh! The updater couldn't be opened because a "
+                            + "problem was encountered.", "Launcher error", t);
                 }
             }
         });

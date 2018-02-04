@@ -217,7 +217,7 @@ public final class Launcher {
 
         if (dirs != null) {
             for (File dir : dirs) {
-                log.info("Removing " + dir.getAbsolutePath() + "...");
+                log.log(Level.INFO, "Removing {0}...", dir.getAbsolutePath());
                 try {
                     FileUtils.deleteDirectory(dir);
                 } catch (IOException e) {
@@ -235,7 +235,7 @@ public final class Launcher {
     public File createExtractDir() {
         File dir = new File(getExtractDir(), String.valueOf(System.currentTimeMillis()));
         dir.mkdirs();
-        log.info("Created temporary directory " + dir.getAbsolutePath());
+        log.log(Level.INFO, "Created temporary directory {0}", dir.getAbsolutePath());
         return dir;
     }
 
@@ -385,17 +385,17 @@ public final class Launcher {
      */
     public static Launcher createFromArguments(String[] args) throws ParameterException, IOException {
         LauncherArguments options = new LauncherArguments();
-        new JCommander(options, args);
+        //new JCommander(options, args);
 
         Integer bsVersion = options.getBootstrapVersion();
         log.info(bsVersion != null ? "Bootstrap version " + bsVersion + " detected" : "Not bootstrapped");
 
         File dir = options.getDir();
         if (dir != null) {
-            log.info("Using given base directory " + dir.getAbsolutePath());
+            log.log(Level.INFO, "Using given base directory {0}", dir.getAbsolutePath());
         } else {
             dir = new File(".");
-            log.info("Using current directory " + dir.getAbsolutePath());
+            log.log(Level.INFO, "Using current directory {0}", dir.getAbsolutePath());
         }
 
         return new Launcher(dir);
@@ -419,24 +419,15 @@ public final class Launcher {
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-                String version = System.getProperty("sun.arch.data.model");
-				log.log(Level.INFO, "Java version string: " + version);
-                if(version.contains("64")) {
-                    try {
-                        Launcher launcher = createFromArguments(args);
-                        SwingHelper.setSwingProperties(tr("launcher.appTitle", launcher.getVersion()));
-                        UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-                        launcher.showLauncherWindow();
-                    } catch (Throwable t) {
-                        log.log(Level.WARNING, "Load failure", t);
-                        SwingHelper.showErrorDialog(null, "Uh oh! The updater couldn't be opened because a " +
-                                "problem was encountered.", "Launcher error", t);
-                    }
-                } else {
-                    SwingHelper.showErrorDialog(null, "Uh oh! You need 64-Bit Java 8 Minimum!", "WorldAutomation.Net");
-                    try {
-                        Desktop.getDesktop().browse(new URI("https://java.com/en/download/"));
-                    } catch (Exception e) { }
+                try {
+                    Launcher launcher = createFromArguments(args);
+                    SwingHelper.setSwingProperties(tr("launcher.appTitle", launcher.getVersion()));
+                    UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+                    launcher.showLauncherWindow();
+                } catch (Throwable t) {
+                    log.log(Level.WARNING, "Load failure", t);
+                    SwingHelper.showErrorDialog(null, "Uh oh! The updater couldn't be opened because a "
+                            + "problem was encountered.", "Launcher error", t);
                 }
             }
         });

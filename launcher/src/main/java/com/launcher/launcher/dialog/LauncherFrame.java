@@ -34,6 +34,8 @@ import java.io.File;
 import java.lang.ref.WeakReference;
 
 import static com.launcher.launcher.util.SharedLocale.tr;
+import java.net.URI;
+import java.util.logging.Level;
 
 /**
  * The main launcher frame.
@@ -365,6 +367,17 @@ public class LauncherFrame extends JFrame {
     }
 
     private void launch() {
+        String version = System.getProperty("sun.arch.data.model");
+        log.log(Level.INFO, "Java version string: {0}", version);
+        if(!version.contains("64")) {
+            SwingHelper.showErrorDialog(null, "Uh oh! You need 64-Bit Java 8 Minimum!", "WorldAutomation.Net");
+            try {
+                Desktop.getDesktop().browse(new URI("https://java.com/en/download/"));
+            } catch (Exception e) {
+            }
+            return;
+        }
+        
         boolean permitUpdate = updateCheck.isSelected();
         Instance instance = launcher.getInstances().get(instancesTable.getSelectedRow());
 

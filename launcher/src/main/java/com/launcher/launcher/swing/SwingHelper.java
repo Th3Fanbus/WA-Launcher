@@ -295,7 +295,7 @@ public final class SwingHelper {
         if (resource != null) {
             return Toolkit.getDefaultToolkit().createImage(resource);
         } else {
-            log.log(Level.WARNING, "Failed to read image from resource: " + name);
+            log.log(Level.WARNING, "Failed to read image from resource: {0}", name);
             return null;
         }
     }
