@@ -163,3 +163,5 @@ launcher/build/distributions/
 launcher/build/scripts/
 launcher/build/scriptsShadow/
 instances/
+/launcher-updater/build/
+/launcher/build/

@@ -14,6 +14,7 @@ import com.google.common.util.concurrent.MoreExecutors;
 import com.launcher.launcher.auth.AccountList;
 import com.launcher.launcher.auth.LoginService;
 import com.launcher.launcher.auth.YggdrasilLoginService;
+import com.launcher.launcher.dialog.LauncherFrame;
 import com.launcher.launcher.launch.LaunchSupervisor;
 import com.launcher.launcher.model.minecraft.VersionManifest;
 import com.launcher.launcher.persistence.Persistence;
@@ -42,8 +43,6 @@ import java.util.Locale;
 import java.util.Properties;
 import java.util.concurrent.Executors;
 import java.util.logging.Level;
-
-import static com.launcher.launcher.util.SharedLocale.tr;
 
 /**
  * The main entry point for the launcher.
@@ -418,10 +417,21 @@ public final class Launcher {
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-                try {
-                    Launcher launcher = createFromArguments(args);
-                    SwingHelper.setSwingProperties(tr("launcher.appTitle", launcher.getVersion()));
-                    UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+	        try {
+                    Thread.currentThread().setContextClassLoader(Launcher.class.getClassLoader());
+                    UIManager.getLookAndFeelDefaults().put("ClassLoader", Launcher.class.getClassLoader());
+                    UIManager.getDefaults().put("SplitPane.border", BorderFactory.createEmptyBorder());
+                    JFrame.setDefaultLookAndFeelDecorated(true);
+                    JDialog.setDefaultLookAndFeelDecorated(true);
+                    System.setProperty("sun.awt.noerasebackground", "true");
+                    System.setProperty("substancelaf.windowRoundedCorners", "false");
+
+                    if (!SwingHelper.setLookAndFeel("com.launcher.launcher.skin.LauncherLookAndFeel")) {
+                        UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+                    }
+
+                    Launcher launcher = Launcher.createFromArguments(args);
+                    launcher.setMainWindowSupplier(new CustomWindowSupplier(launcher));
                     launcher.showLauncherWindow();
                 } catch (Throwable t) {
                     log.log(Level.WARNING, "Load failure", t);
@@ -431,6 +441,20 @@ public final class Launcher {
             }
         });
 
-    }           
+    }
+    
+    private static class CustomWindowSupplier implements Supplier<Window> {
+
+        private final Launcher launcher;
+
+        private CustomWindowSupplier(Launcher launcher) {
+            this.launcher = launcher;
+        }
+
+        @Override
+        public Window get() {
+            return new LauncherFrame(launcher);
+        }
+    }
 
 }

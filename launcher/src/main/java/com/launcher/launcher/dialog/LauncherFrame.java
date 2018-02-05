@@ -7,6 +7,7 @@
 package com.launcher.launcher.dialog;
 
 import com.launcher.concurrency.ObservableFuture;
+import com.launcher.launcher.FancyBackgroundPanel;
 import com.launcher.launcher.Instance;
 import com.launcher.launcher.InstanceList;
 import com.launcher.launcher.Launcher;
@@ -76,6 +77,13 @@ public class LauncherFrame extends JFrame {
         setLocationRelativeTo(null);
 
         SwingHelper.setFrameIcon(this, Launcher.class, "icon.png");
+        
+        setSize(800, 500);
+        setLocationRelativeTo(null);
+
+        SwingHelper.removeOpaqueness(getInstancesTable());
+        SwingHelper.removeOpaqueness(getInstanceScroll());
+        getInstanceScroll().setBorder(BorderFactory.createEmptyBorder());
 
         SwingUtilities.invokeLater(new Runnable() {
             @Override
@@ -190,7 +198,7 @@ public class LauncherFrame extends JFrame {
 	}
 
     protected JPanel createContainerPanel() {
-        return new JPanel();
+        return new FancyBackgroundPanel();
     }
 
     /**
@@ -199,7 +207,9 @@ public class LauncherFrame extends JFrame {
      * @return the news panel
      */
     protected WebpagePanel createNewsPanel() {
-        return WebpagePanel.forURL(launcher.getNewsURL(), false);
+        WebpagePanel panel = WebpagePanel.forURL(launcher.getNewsURL(), false);
+        panel.setBrowserBorder(BorderFactory.createEmptyBorder());
+        return panel;
     }
 
     /**

@@ -28,6 +28,7 @@ import java.util.List;
 import java.util.concurrent.Callable;
 
 import static com.launcher.launcher.LauncherUtils.concat;
+import java.util.logging.Level;
 
 /**
  * Stores the list of instances.
@@ -82,7 +83,7 @@ public class InstanceList {
      * @return a list of instances
      */
     public synchronized List<Instance> getSelected() {
-        List<Instance> selected = new ArrayList<Instance>();
+        List<Instance> selected = new ArrayList<>();
         for (Instance instance : instances) {
             if (instance.isSelected()) {
                 selected.add(instance);
@@ -110,8 +111,8 @@ public class InstanceList {
             log.info("Enumerating instance list...");
             progress = new DefaultProgress(0, SharedLocale.tr("instanceLoader.loadingLocal"));
 
-            List<Instance> local = new ArrayList<Instance>();
-            List<Instance> remote = new ArrayList<Instance>();
+            List<Instance> local = new ArrayList<>();
+            List<Instance> remote = new ArrayList<>();
 
             File[] dirs = launcher.getInstancesDir().listFiles((FileFilter) DirectoryFileFilter.INSTANCE);
             if (dirs != null) {
@@ -124,7 +125,7 @@ public class InstanceList {
                     instance.setLocal(true);
                     local.add(instance);
 
-                    log.info(instance.getName() + " local instance found at " + dir.getAbsolutePath());
+                    log.log(Level.INFO, "{0} local instance found at {1}", new Object[]{instance.getName(), dir.getAbsolutePath()});
                 }
             }
 
@@ -156,14 +157,14 @@ public class InstanceList {
                             URL url = concat(packagesURL, manifest.getLocation());
                             instance.setManifestURL(url);
 
-                            log.info("(" + instance.getName() + ").setManifestURL(" + url + ")");
+                            log.log(Level.INFO, "({0}).setManifestURL({1})", new Object[]{instance.getName(), url});
 
                             // Check if an update is required
                             if (instance.getVersion() == null || !instance.getVersion().equals(manifest.getVersion())) {
                                 instance.setUpdatePending(true);
                                 instance.setVersion(manifest.getVersion());
                                 Persistence.commitAndForget(instance);
-                                log.info(instance.getName() + " requires an update to " + manifest.getVersion());
+                                log.log(Level.INFO, "{0} requires an update to {1}", new Object[]{instance.getName(), manifest.getVersion()});
                             }
                         }
                     }
@@ -183,8 +184,7 @@ public class InstanceList {
                         instance.setLocal(false);
                         remote.add(instance);
 
-                        log.info("Available remote instance: '" + instance.getName() +
-                                "' at version " + instance.getVersion());
+                        log.log(Level.INFO, "Available remote instance: ''{0}'' at version {1}", new Object[]{instance.getName(), instance.getVersion()});
                     }
                 }
             } catch (IOException e) {
@@ -195,7 +195,7 @@ public class InstanceList {
                     instances.addAll(local);
                     instances.addAll(remote);
 
-                    log.info(instances.size() + " instance(s) enumerated.");
+                    log.log(Level.INFO, "{0} instance(s) enumerated.", instances.size());
                 }
             }
 
