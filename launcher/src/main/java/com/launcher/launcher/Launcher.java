@@ -6,7 +6,6 @@
 
 package com.launcher.launcher;
 
-import com.beust.jcommander.JCommander;
 import com.beust.jcommander.ParameterException;
 import com.google.common.base.Strings;
 import com.google.common.base.Supplier;
@@ -32,13 +31,11 @@ import org.apache.commons.io.FileUtils;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.Desktop;
 import java.io.File;
 import java.io.FileFilter;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.lang.management.ManagementFactory;
-import java.net.URI;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.util.Locale;
@@ -388,7 +385,6 @@ public final class Launcher {
         log.log(Level.INFO, "Java version string: {0}", version);
         
         LauncherArguments options = new LauncherArguments();
-        //new JCommander(options, args);
 
         Integer bsVersion = options.getBootstrapVersion();
         log.info(bsVersion != null ? "Bootstrap version " + bsVersion + " detected" : "Not bootstrapped");

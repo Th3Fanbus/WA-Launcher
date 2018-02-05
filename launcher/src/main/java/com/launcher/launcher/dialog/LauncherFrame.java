@@ -35,7 +35,6 @@ import java.lang.ref.WeakReference;
 
 import static com.launcher.launcher.util.SharedLocale.tr;
 import java.net.URI;
-import java.util.logging.Level;
 
 /**
  * The main launcher frame.
@@ -394,7 +393,7 @@ public class LauncherFrame extends JFrame {
         private final Launcher launcher;
 
         private LaunchListenerImpl(LauncherFrame frame) {
-            this.frameRef = new WeakReference<LauncherFrame>(frame);
+            this.frameRef = new WeakReference<>(frame);
             this.launcher = frame.launcher;
         }
 

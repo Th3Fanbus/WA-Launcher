@@ -168,7 +168,7 @@ public class ProgressDialog extends JDialog {
             }
         };
 
-        lastDialogRef = new WeakReference<ProgressDialog>(dialog);
+        lastDialogRef = new WeakReference<>(dialog);
 
         final Timer timer = new Timer();
         timer.scheduleAtFixedRate(new UpdateProgress(dialog, observable), 400, 400);
