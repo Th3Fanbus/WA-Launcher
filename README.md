@@ -1,4 +1,4 @@
-![](https://www.worldautomation.net/assets/uploads/system/site-logo.png)
+![](https://www.worldautomation.net/images/home_logo.png)
 # WorldAutomation.Net Launcher V2 #
 
 Here you can download the source of the WorldAutomation.Net launcher.
