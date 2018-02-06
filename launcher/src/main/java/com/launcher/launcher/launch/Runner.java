@@ -38,6 +38,7 @@ import java.util.concurrent.Callable;
 
 import static com.launcher.launcher.LauncherUtils.checkInterrupted;
 import static com.launcher.launcher.util.SharedLocale.tr;
+import java.util.logging.Level;
 
 /**
  * Handles the launching of an instance.
@@ -147,7 +148,7 @@ public class Runner implements Callable<Process>, ProgressObservable {
 
         ProcessBuilder processBuilder = new ProcessBuilder(builder.buildCommand());
         processBuilder.directory(instance.getContentDir());
-        Runner.log.info("Launching: " + builder);
+        Runner.log.log(Level.INFO, "Launching: {0}", builder);
         checkInterrupted();
 
         progress = new DefaultProgress(1, SharedLocale.tr("runner.startingJava"));
@@ -335,7 +336,7 @@ public class Runner implements Callable<Process>, ProgressObservable {
      * @throws JsonProcessingException on error
      */
     private Map<String, String> getCommandSubstitutions() throws JsonProcessingException {
-        Map<String, String> map = new HashMap<String, String>();
+        Map<String, String> map = new HashMap<>();
 
         map.put("version_name", versionManifest.getId());
 

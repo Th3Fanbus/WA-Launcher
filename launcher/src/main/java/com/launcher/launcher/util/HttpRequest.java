@@ -33,7 +33,7 @@ public class HttpRequest implements Closeable, ProgressObservable {
     private static final int READ_BUFFER_SIZE = 1024 * 8;
 
     private final ObjectMapper mapper = new ObjectMapper();
-    private final Map<String, String> headers = new HashMap<String, String>();
+    private final Map<String, String> headers = new HashMap<>();
     private final String method;
     @Getter
     private final URL url;
@@ -95,7 +95,6 @@ public class HttpRequest implements Closeable, ProgressObservable {
 
     /**
      * Execute the request.
-     * <p/>
      * After execution, {@link #close()} should be called.
      *
      * @return this object
@@ -361,9 +360,7 @@ public class HttpRequest implements Closeable, ProgressObservable {
                     url.getPath(), url.getQuery(), url.getRef());
             url = uri.toURL();
             return url;
-        } catch (MalformedURLException e) {
-            return existing;
-        } catch (URISyntaxException e) {
+        } catch (MalformedURLException | URISyntaxException e) {
             return existing;
         }
     }
@@ -372,7 +369,7 @@ public class HttpRequest implements Closeable, ProgressObservable {
      * Used with {@link #bodyForm(Form)}.
      */
     public final static class Form {
-        public final List<String> elements = new ArrayList<String>();
+        public final List<String> elements = new ArrayList<>();
 
         private Form() {
         }
@@ -453,6 +450,7 @@ public class HttpRequest implements Closeable, ProgressObservable {
          * Return the result as an instance of the given class that has been
          * deserialized from a JSON payload.
          *
+         * @param <T>
          * @param cls the class
          * @return the object
          * @throws java.io.IOException on I/O error
@@ -465,6 +463,7 @@ public class HttpRequest implements Closeable, ProgressObservable {
          * Return the result as an instance of the given type that has been
          * deserialized from a JSON payload.
          *
+         * @param <T>
          * @param type the type reference
          * @return the object
          * @throws java.io.IOException on I/O error
@@ -477,6 +476,8 @@ public class HttpRequest implements Closeable, ProgressObservable {
          * Return the result as an instance of the given class that has been
          * deserialized from a XML payload.
          *
+         * @param <T>
+         * @param cls
          * @return the object
          * @throws java.io.IOException on I/O error
          */

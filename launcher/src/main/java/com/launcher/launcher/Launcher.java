@@ -21,6 +21,7 @@ import com.launcher.launcher.persistence.Persistence;
 import com.launcher.launcher.swing.SwingHelper;
 import com.launcher.launcher.update.UpdateManager;
 import com.launcher.launcher.util.HttpRequest;
+import com.launcher.launcher.util.Platform;
 import com.launcher.launcher.util.SharedLocale;
 import com.launcher.launcher.util.SimpleLogFormatter;
 import com.sun.management.OperatingSystemMXBean;
@@ -380,7 +381,9 @@ public final class Launcher {
      * @throws IOException throw on an I/O error
      */
     public static Launcher createFromArguments(String[] args) throws ParameterException, IOException {
+        String osName = System.getProperty("os.name").toLowerCase();
         String version = System.getProperty("sun.arch.data.model");
+        log.log(Level.INFO, "Operating system string: {0}", osName);
         log.log(Level.INFO, "Java version string: {0}", version);
         
         LauncherArguments options = new LauncherArguments();

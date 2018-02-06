@@ -8,7 +8,6 @@ package com.launcher.launcher.launch;
 
 import com.google.common.base.Function;
 import com.launcher.launcher.Launcher;
-import com.launcher.launcher.dialog.LauncherFrame;
 import com.launcher.launcher.dialog.ProcessConsoleFrame;
 import com.launcher.launcher.swing.MessageLog;
 import lombok.NonNull;
@@ -35,7 +34,7 @@ public class LaunchProcessHandler implements Function<Process, ProcessConsoleFra
 
     @Override
     public ProcessConsoleFrame apply(final Process process) {
-        log.info("Watching process " + process);
+        log.log(Level.INFO, "Watching process {0}", process);
 
         try {
             SwingUtilities.invokeAndWait(new Runnable() {

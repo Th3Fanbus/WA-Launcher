@@ -57,7 +57,7 @@ public abstract class BaseUpdater {
 
     private final Launcher launcher;
     private final Environment environment = Environment.getInstance();
-    private final List<Runnable> executeOnCompletion = new ArrayList<Runnable>();
+    private final List<Runnable> executeOnCompletion = new ArrayList<>();
 
     protected BaseUpdater(@NonNull Launcher launcher) {
         this.launcher = launcher;
@@ -149,11 +149,11 @@ public abstract class BaseUpdater {
                               @NonNull URL url) throws InterruptedException {
         // If the JAR does not exist, install it
         if (!jarFile.exists()) {
-            List<File> targets = new ArrayList<File>();
+            List<File> targets = new ArrayList<>();
 
             File tempFile = installer.getDownloader().download(url, "", JAR_SIZE_ESTIMATE, jarFile.getName());
             installer.queue(new FileMover(tempFile, jarFile));
-            log.info("Installing " + jarFile.getName() + " from " + url);
+            log.log(Level.INFO, "Installing {0} from {1}", new Object[]{jarFile.getName(), url});
         }
     }
 
@@ -172,7 +172,7 @@ public abstract class BaseUpdater {
                 .asJson(AssetsIndex.class);
 
         // Keep track of duplicates
-        Set<String> downloading = new HashSet<String>();
+        Set<String> downloading = new HashSet<>();
 
         for (Map.Entry<String, Asset> entry : index.getObjects().entrySet()) {
             checkInterrupted();
@@ -182,19 +182,19 @@ public abstract class BaseUpdater {
             File targetFile = assetsRoot.getObjectPath(entry.getValue());
 
             if (!targetFile.exists() && !downloading.contains(path)) {
-                List<URL> urls = new ArrayList<URL>();
+                List<URL> urls = new ArrayList<>();
                 for (URL sourceUrl : sources) {
                     try {
                         urls.add(concat(sourceUrl, path));
                     } catch (MalformedURLException e) {
-                        log.log(Level.WARNING, "Bad source URL for library: " + sourceUrl);
+                        log.log(Level.WARNING, "Bad source URL for library: {0}", sourceUrl);
                     }
                 }
 
                 File tempFile = installer.getDownloader().download(
                         urls, "", entry.getValue().getSize(), entry.getKey());
                 installer.queue(new FileMover(tempFile, targetFile));
-                log.info("Fetching " + path + " from " + urls);
+                log.log(Level.INFO, "Fetching {0} from {1}", new Object[]{path, urls});
                 downloading.add(path);
             }
         }
@@ -213,19 +213,19 @@ public abstract class BaseUpdater {
                 File targetFile = new File(librariesDir, path);
 
                 if (!targetFile.exists()) {
-                    List<URL> urls = new ArrayList<URL>();
+                    List<URL> urls = new ArrayList<>();
                     for (URL sourceUrl : sources) {
                         try {
                             urls.add(concat(sourceUrl, path));
                         } catch (MalformedURLException e) {
-                            log.log(Level.WARNING, "Bad source URL for library: " + sourceUrl);
+                            log.log(Level.WARNING, "Bad source URL for library: {0}", sourceUrl);
                         }
                     }
 
                     File tempFile = installer.getDownloader().download(urls, "", LIBRARY_SIZE_ESTIMATE,
                             library.getName() + ".jar");
                     installer.queue(new FileMover( tempFile, targetFile));
-                    log.info("Fetching " + path + " from " + urls);
+                    log.log(Level.INFO, "Fetching {0} from {1}", new Object[]{path, urls});
                 }
             }
         }

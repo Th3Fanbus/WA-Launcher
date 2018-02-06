@@ -35,7 +35,7 @@ public final class JavaRuntimeFinder {
             return null;
         }
         
-        List<JREEntry> entries = new ArrayList<JREEntry>();
+        List<JREEntry> entries = new ArrayList<>();
         try {
             getEntriesFromRegistry(entries, "SOFTWARE\\JavaSoft\\Java Runtime Environment");
             getEntriesFromRegistry(entries, "SOFTWARE\\JavaSoft\\Java Development Kit");

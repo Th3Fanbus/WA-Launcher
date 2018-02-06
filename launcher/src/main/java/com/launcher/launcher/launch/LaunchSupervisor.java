@@ -76,7 +76,7 @@ public class LaunchSupervisor {
                 // Execute the updater
                 Updater updater = new Updater(launcher, instance);
                 updater.setOnline(options.getUpdatePolicy() == UpdatePolicy.ALWAYS_UPDATE || session.isOnline());
-                ObservableFuture<Instance> future = new ObservableFuture<Instance>(
+                ObservableFuture<Instance> future = new ObservableFuture<>(
                         launcher.getExecutor().submit(updater), updater);
 
                 // Show progress
@@ -120,7 +120,7 @@ public class LaunchSupervisor {
 
         // Get the process
         Runner task = new Runner(launcher, instance, session, extractDir);
-        ObservableFuture<Process> processFuture = new ObservableFuture<Process>(
+        ObservableFuture<Process> processFuture = new ObservableFuture<>(
                 launcher.getExecutor().submit(task), task);
 
         // Show process for the process retrieval
@@ -154,18 +154,13 @@ public class LaunchSupervisor {
             @Override
             public void run() {
                 try {
-                    log.info("Process ended; cleaning up " + extractDir.getAbsolutePath());
+                    log.log(Level.INFO, "Process ended; cleaning up {0}", extractDir.getAbsolutePath());
                     FileUtils.deleteDirectory(extractDir);
                 } catch (IOException e) {
                     log.log(Level.WARNING, "Failed to clean up " + extractDir.getAbsolutePath(), e);
                 }
 
-                SwingUtilities.invokeLater(new Runnable() {
-                    @Override
-                    public void run() {
-                        listener.gameClosed();
-                    }
-                });
+                SwingUtilities.invokeLater(listener::gameClosed);
             }
         }, sameThreadExecutor());
     }
