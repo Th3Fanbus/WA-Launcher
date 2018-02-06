@@ -31,12 +31,6 @@ Platform: Java Portable Executable<br />
 Requirements: Java 7+<br />
 Universal Jar file. Works on all operating systems but it does not have an icon.
 
-[](<img src="http://s20.postimg.org/3ntvhjb6l/screenshot_308.png" style="width:200px;">)
-
-[](<img src="http://s20.postimg.org/545dzoe3h/screenshot_309.png" style="width:200px;">)
-
-[](<img src="http://s20.postimg.org/63vovdt99/screenshot_307.png" style="width:200px;">)
-
 ## Building the Source Manually ##
 
 Simple. Just run download the source, and run the build.bator build.sh on Linux and OSX.
