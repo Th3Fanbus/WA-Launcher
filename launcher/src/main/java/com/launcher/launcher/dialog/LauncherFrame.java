@@ -1,9 +1,3 @@
-/*
- * SK's Minecraft Launcher
- * Copyright (C) 2010-2014 Albert Pham <http://www.sk89q.com> and contributors
- * Please see LICENSE.txt for license information.
- */
-
 package com.launcher.launcher.dialog;
 
 import com.launcher.concurrency.ObservableFuture;
@@ -52,11 +46,10 @@ public class LauncherFrame extends JFrame {
     private final JScrollPane instanceScroll = new JScrollPane(instancesTable);
     private WebpagePanel webView;
     private JSplitPane splitPane;
-    private final JButton launchButton = new JButton(SharedLocale.tr("launcher.launch"));
-	private final JButton devButton = new JButton("TEST");
-    private final JButton refreshButton = new JButton(SharedLocale.tr("launcher.checkForUpdates"));
-    private final JButton optionsButton = new JButton(SharedLocale.tr("launcher.options"));
-    private final JButton selfUpdateButton = new JButton(SharedLocale.tr("launcher.updateLauncher"));
+    private final JButton launchButton = new JButton("<html><img src=https://www.worldautomation.net/images/launcher-launch.png>");
+    private final JButton refreshButton = new JButton("<html><img src=https://www.worldautomation.net/images/launcher-refresh.png>");
+    private final JButton optionsButton = new JButton("<html><img src=https://www.worldautomation.net/images/launcher-options.png>");
+    private final JButton selfUpdateButton =new JButton("<html><img src=https://www.worldautomation.net/images/launcher-update.png>");	
     private final JCheckBox updateCheck = new JCheckBox(SharedLocale.tr("launcher.downloadUpdates"));
 
     /**
@@ -71,19 +64,20 @@ public class LauncherFrame extends JFrame {
         instancesModel = new InstanceTableModel(launcher.getInstances());
 
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        setMinimumSize(new Dimension(400, 300));
+        setMinimumSize(new Dimension(500, 400));
+		setResizable(false);
         initComponents();
         pack();
         setLocationRelativeTo(null);
 
         SwingHelper.setFrameIcon(this, Launcher.class, "icon.png");
         
-        setSize(800, 500);
-        setLocationRelativeTo(null);
+        //setSize(800, 500);
+        //setLocationRelativeTo(null);
 
-        SwingHelper.removeOpaqueness(getInstancesTable());
-        SwingHelper.removeOpaqueness(getInstanceScroll());
-        getInstanceScroll().setBorder(BorderFactory.createEmptyBorder());
+        //SwingHelper.removeOpaqueness(getInstancesTable());
+        //SwingHelper.removeOpaqueness(getInstanceScroll());
+        //getInstanceScroll().setBorder(BorderFactory.createEmptyBorder());
 
         SwingUtilities.invokeLater(new Runnable() {
             @Override
@@ -96,11 +90,9 @@ public class LauncherFrame extends JFrame {
     private void initComponents() {
         JPanel container = createContainerPanel();
         container.setLayout(new MigLayout("fill, insets dialog", "[][]push[][]", "[grow][]"));
-
         webView = createNewsPanel();
         splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, instanceScroll, webView);
         selfUpdateButton.setVisible(launcher.getUpdateManager().getPendingUpdate());
-
         launcher.getUpdateManager().addPropertyChangeListener(new PropertyChangeListener() {
             @Override
             public void propertyChange(PropertyChangeEvent evt) {
@@ -114,19 +106,26 @@ public class LauncherFrame extends JFrame {
         updateCheck.setSelected(true);
         instancesTable.setModel(instancesModel);
         launchButton.setFont(launchButton.getFont().deriveFont(Font.BOLD));
-	//devButton.setFont(devButton.getFont().deriveFont(Font.BOLD));
         splitPane.setDividerLocation(0);
         splitPane.setDividerSize(0);
         splitPane.setOpaque(false);
-        container.add(splitPane, "grow, wrap, span 5, gapbottom unrel, w null:700, h null:400");
-        SwingHelper.flattenJSplitPane(splitPane);
+		
+        container.add(webView, "grow, wrap, span 5, gapbottom unrel, w null:600, h null:400");
+        //SwingHelper.flattenJSplitPane(splitPane);
+		
         container.add(refreshButton);
         container.add(updateCheck);
+
+		JButton discordButton = new JButton("<html><img src=https://www.worldautomation.net/images/launcher-discord.png>");
+		container.add(discordButton);
+		discordButton.addActionListener(ActionListeners.openURL(this, "https://discord.gg/Dvjvtee"));
+
+		JButton logButton = new JButton("<html><img src=https://www.worldautomation.net/images/launcher-log.png>");
+		container.add(logButton);
+		
         container.add(selfUpdateButton);
         container.add(optionsButton);
         container.add(launchButton);
-        //container.add(devButton);
-		
 
         add(container, BorderLayout.CENTER);
 
@@ -183,7 +182,15 @@ public class LauncherFrame extends JFrame {
                 popupInstanceMenu(e.getComponent(), e.getX(), e.getY(), selected);
             }
         });
-        devButton.addMouseListener(new PopupMouseAdapter() {
+		
+		logButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ConsoleFrame.showMessages();
+            }
+        });
+        
+ 		logButton.addMouseListener(new PopupMouseAdapter() {
             @Override
             protected void showPopup(MouseEvent e) {
                 int index = instancesTable.rowAtPoint(e.getPoint());

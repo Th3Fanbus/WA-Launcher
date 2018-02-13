@@ -144,7 +144,7 @@ public final class WebpagePanel extends JPanel {
         JLayeredPane panel = new JLayeredPane();
         panel.setBorder(new CompoundBorder(
                 BorderFactory.createEtchedBorder(), BorderFactory
-                        .createEmptyBorder(4, 4, 4, 4)));
+                        .createEmptyBorder(0, 0, 0, 0)));
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
         
         final JButton showButton = new JButton("Load page");

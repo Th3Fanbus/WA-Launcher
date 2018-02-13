@@ -29,16 +29,22 @@ public class AboutDialog extends JDialog {
         JPanel container = new JPanel();
         container.setLayout(new MigLayout("insets dialog"));
 
-        container.add(new JLabel("<html>Licensed under GNU General Public License, version 3."), "wrap, gapbottom unrel");
-        container.add(new JLabel("<html>You are using WorldAutomation.Net, an open-source customizable<br>" +
-                "launcher platform that anyone can use."), "wrap, gapbottom unrel");
-        container.add(new JLabel("<html>WorldAutomation.Net does not necessarily endorse the version of<br>" +
-                "the launcher that you are using."), "wrap, gapbottom unrel");
-
-        JButton okButton = new JButton("OK");
-        JButton sourceCodeButton = new JButton("Website");
-
-        container.add(sourceCodeButton, "span, split 3, sizegroup bttn");
+        container.add(new JLabel("<html><center><img src=https://www.worldautomation.net/images/launcher-about.png>"), "align center, wrap");
+        container.add(new JLabel("<html>Licensed under GNU General Public License, version 3.<br><br>"), "align center, wrap");
+        container.add(new JLabel("<html>You are using WA Launcher, an open-source customizable<br>"), "align center, wrap");
+        container.add(new JLabel("<html>launcher platform that anyone can use.<br><br>"), "align center, wrap");
+        container.add(new JLabel("<html>WA does not necessarily endorse the version of<br>"), "align center, wrap");
+        container.add(new JLabel("<html>the launcher that you are using.<br><br>"), "align center, wrap");
+        container.add(new JLabel("<html>Original Source Credit to SKCraft.</center><br><br>"), "align center, wrap");
+        
+		JButton discordButton = new JButton("<html><img src=https://www.worldautomation.net/images/launcher-about-discord.png>");
+		container.add(discordButton, "align center, wrap");
+		discordButton.addActionListener(ActionListeners.openURL(this, "https://discord.gg/Dvjvtee"));
+		
+        JButton sourceCodeButton = new JButton("Website");      
+		container.add(sourceCodeButton, "span, split 3, sizegroup bttn");
+        
+		JButton okButton = new JButton("OK");
         container.add(okButton, "tag ok, sizegroup bttn");
 
         add(container, BorderLayout.CENTER);
@@ -48,6 +54,7 @@ public class AboutDialog extends JDialog {
 
         okButton.addActionListener(ActionListeners.dispose(this));
         sourceCodeButton.addActionListener(ActionListeners.openURL(this, "https://www.worldautomation.net"));
+
     }
 
     public static void showAboutDialog(Window parent) {
