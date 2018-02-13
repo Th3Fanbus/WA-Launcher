@@ -32,8 +32,8 @@ echo location of your Java installation.
 goto fail
 
 :findJavaFromJavaHome
-@rem JAVA_HOME=/cygdrive/c/Program\ Files/java/jdk1.8.0_144/
-set JAVA_EXE="C:\Java\bin\java.exe"
+set JAVA_HOME=%JAVA_HOME:"=%
+set JAVA_EXE=%JAVA_HOME%/bin/java.exe
 
 if exist "%JAVA_EXE%" goto init
 
