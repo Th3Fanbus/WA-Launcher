@@ -11,7 +11,7 @@ import com.google.common.util.concurrent.Futures;
 import com.google.common.util.concurrent.ListenableFuture;
 import com.launcher.concurrency.ObservableFuture;
 import com.launcher.launcher.Instance;
-import com.launcher.launcher.Launcher;
+import com.launcher.launcher.FancyLauncher;
 import com.launcher.launcher.auth.Session;
 import com.launcher.launcher.dialog.LoginDialog;
 import com.launcher.launcher.dialog.ProgressDialog;
@@ -37,9 +37,9 @@ import static com.launcher.launcher.util.SharedLocale.tr;
 @Log
 public class LaunchSupervisor {
 
-    private final Launcher launcher;
+    private final FancyLauncher launcher;
 
-    public LaunchSupervisor(Launcher launcher) {
+    public LaunchSupervisor(FancyLauncher launcher) {
         this.launcher = launcher;
     }
 

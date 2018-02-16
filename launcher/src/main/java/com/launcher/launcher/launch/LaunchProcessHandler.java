@@ -7,7 +7,7 @@
 package com.launcher.launcher.launch;
 
 import com.google.common.base.Function;
-import com.launcher.launcher.Launcher;
+import com.launcher.launcher.FancyLauncher;
 import com.launcher.launcher.dialog.ProcessConsoleFrame;
 import com.launcher.launcher.swing.MessageLog;
 import lombok.NonNull;
@@ -25,10 +25,10 @@ public class LaunchProcessHandler implements Function<Process, ProcessConsoleFra
 
     private static final int CONSOLE_NUM_LINES = 10000;
 
-    private final Launcher launcher;
+    private final FancyLauncher launcher;
     private ProcessConsoleFrame consoleFrame;
 
-    public LaunchProcessHandler(@NonNull Launcher launcher) {
+    public LaunchProcessHandler(@NonNull FancyLauncher launcher) {
         this.launcher = launcher;
     }
 

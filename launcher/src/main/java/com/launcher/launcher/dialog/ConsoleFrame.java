@@ -6,7 +6,7 @@
 
 package com.launcher.launcher.dialog;
 
-import com.launcher.launcher.Launcher;
+import com.launcher.launcher.FancyLauncher;
 import com.launcher.launcher.swing.LinedBoxPanel;
 import com.launcher.launcher.swing.MessageLog;
 import com.launcher.launcher.swing.SwingHelper;
@@ -58,8 +58,8 @@ public class ConsoleFrame extends JFrame {
      */
     public ConsoleFrame(@NonNull String title, int numLines, boolean colorEnabled) {
         messageLog = new MessageLog(numLines, colorEnabled);
-        trayRunningIcon = SwingHelper.createImage(Launcher.class, "tray_ok.png");
-        trayClosedIcon = SwingHelper.createImage(Launcher.class, "tray_closed.png");
+        trayRunningIcon = SwingHelper.createImage(FancyLauncher.class, "tray_ok.png");
+        trayClosedIcon = SwingHelper.createImage(FancyLauncher.class, "tray_closed.png");
 
         setTitle(title);
         setIconImage(trayRunningIcon);

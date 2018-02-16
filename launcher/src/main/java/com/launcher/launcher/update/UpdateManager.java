@@ -10,7 +10,7 @@ import com.google.common.util.concurrent.FutureCallback;
 import com.google.common.util.concurrent.Futures;
 import com.google.common.util.concurrent.ListenableFuture;
 import com.launcher.concurrency.ObservableFuture;
-import com.launcher.launcher.Launcher;
+import com.launcher.launcher.FancyLauncher;
 import com.launcher.launcher.dialog.ProgressDialog;
 import com.launcher.launcher.selfupdate.SelfUpdater;
 import com.launcher.launcher.selfupdate.UpdateChecker;
@@ -30,10 +30,10 @@ public class UpdateManager {
 
     @Getter
     private final SwingPropertyChangeSupport propertySupport = new SwingPropertyChangeSupport(this);
-    private final Launcher launcher;
+    private final FancyLauncher launcher;
     private URL pendingUpdateUrl;
 
-    public UpdateManager(Launcher launcher) {
+    public UpdateManager(FancyLauncher launcher) {
         this.launcher = launcher;
     }
 

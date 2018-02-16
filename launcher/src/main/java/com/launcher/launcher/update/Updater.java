@@ -11,7 +11,7 @@ import com.launcher.concurrency.DefaultProgress;
 import com.launcher.concurrency.ProgressFilter;
 import com.launcher.concurrency.ProgressObservable;
 import com.launcher.launcher.Instance;
-import com.launcher.launcher.Launcher;
+import com.launcher.launcher.FancyLauncher;
 import com.launcher.launcher.LauncherException;
 import com.launcher.launcher.install.Installer;
 import com.launcher.launcher.model.minecraft.VersionManifest;
@@ -40,7 +40,7 @@ public class Updater extends BaseUpdater implements Callable<Instance>, Progress
 
     private final ObjectMapper mapper = new ObjectMapper();
     private final Installer installer;
-    private final Launcher launcher;
+    private final FancyLauncher launcher;
     private final Instance instance;
 
     @Getter @Setter
@@ -51,7 +51,7 @@ public class Updater extends BaseUpdater implements Callable<Instance>, Progress
 
     private ProgressObservable progress = new DefaultProgress(-1, SharedLocale.tr("instanceUpdater.preparingUpdate"));
 
-    public Updater(@NonNull Launcher launcher, @NonNull Instance instance) {
+    public Updater(@NonNull FancyLauncher launcher, @NonNull Instance instance) {
         super(launcher);
 
         this.installer = new Installer(launcher.getInstallerDir());

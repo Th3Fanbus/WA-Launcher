@@ -9,7 +9,7 @@ package com.launcher.launcher.update;
 import com.google.common.base.Strings;
 import com.launcher.launcher.AssetsRoot;
 import com.launcher.launcher.Instance;
-import com.launcher.launcher.Launcher;
+import com.launcher.launcher.FancyLauncher;
 import com.launcher.launcher.LauncherException;
 import com.launcher.launcher.dialog.FeatureSelectionDialog;
 import com.launcher.launcher.dialog.ProgressDialog;
@@ -55,11 +55,11 @@ public abstract class BaseUpdater {
     private static final long JAR_SIZE_ESTIMATE = 5 * 1024 * 1024;
     private static final long LIBRARY_SIZE_ESTIMATE = 3 * 1024 * 1024;
 
-    private final Launcher launcher;
+    private final FancyLauncher launcher;
     private final Environment environment = Environment.getInstance();
     private final List<Runnable> executeOnCompletion = new ArrayList<>();
 
-    protected BaseUpdater(@NonNull Launcher launcher) {
+    protected BaseUpdater(@NonNull FancyLauncher launcher) {
         this.launcher = launcher;
     }
 
@@ -89,7 +89,7 @@ public abstract class BaseUpdater {
                 .saveContent(instance.getManifestPath())
                 .asJson(Manifest.class);
 
-        if (manifest.getMinimumVersion() > Launcher.PROTOCOL_VERSION) {
+        if (manifest.getMinimumVersion() > FancyLauncher.PROTOCOL_VERSION) {
             throw new LauncherException("Update required", SharedLocale.tr("errors.updateRequiredError"));
         }
 

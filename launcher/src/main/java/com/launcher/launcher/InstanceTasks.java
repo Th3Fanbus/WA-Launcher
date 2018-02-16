@@ -19,9 +19,9 @@ import static com.launcher.launcher.util.SharedLocale.tr;
 
 public class InstanceTasks {
 
-    private final Launcher launcher;
+    private final FancyLauncher launcher;
 
-    public InstanceTasks(Launcher launcher) {
+    public InstanceTasks(FancyLauncher launcher) {
         this.launcher = launcher;
     }
 

@@ -4,7 +4,7 @@ import com.launcher.concurrency.ObservableFuture;
 import com.launcher.launcher.FancyBackgroundPanel;
 import com.launcher.launcher.Instance;
 import com.launcher.launcher.InstanceList;
-import com.launcher.launcher.Launcher;
+import com.launcher.launcher.FancyLauncher;
 import com.launcher.launcher.launch.LaunchListener;
 import com.launcher.launcher.launch.LaunchOptions;
 import com.launcher.launcher.launch.LaunchOptions.UpdatePolicy;
@@ -37,7 +37,7 @@ import java.net.URI;
 @Log
 public class LauncherFrame extends JFrame {
 
-    private final Launcher launcher;
+    private final FancyLauncher launcher;
 
     @Getter
     private final InstanceTable instancesTable = new InstanceTable();
@@ -57,7 +57,7 @@ public class LauncherFrame extends JFrame {
      *
      * @param launcher the launcher
      */
-    public LauncherFrame(@NonNull Launcher launcher) {
+    public LauncherFrame(@NonNull FancyLauncher launcher) {
         super(tr("launcher.title", launcher.getVersion()));
 
         this.launcher = launcher;
@@ -70,7 +70,7 @@ public class LauncherFrame extends JFrame {
         pack();
         setLocationRelativeTo(null);
 
-        SwingHelper.setFrameIcon(this, Launcher.class, "icon.png");
+        SwingHelper.setFrameIcon(this, FancyLauncher.class, "icon.png");
         
         //setSize(800, 500);
         //setLocationRelativeTo(null);
@@ -407,7 +407,7 @@ public class LauncherFrame extends JFrame {
 
     private static class LaunchListenerImpl implements LaunchListener {
         private final WeakReference<LauncherFrame> frameRef;
-        private final Launcher launcher;
+        private final FancyLauncher launcher;
 
         private LaunchListenerImpl(LauncherFrame frame) {
             this.frameRef = new WeakReference<>(frame);

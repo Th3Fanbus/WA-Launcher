@@ -1,10 +1,10 @@
 apply plugin: 'com.github.johnrengelman.shadow'
 apply plugin: 'application'
-mainClassName = 'com.launcher.launcher.Launcher'
+mainClassName = 'com.launcher.launcher.FancyLauncher'
 
 jar {
     manifest {
-        attributes("Main-Class": "com.launcher.launcher.Launcher")
+        attributes("Main-Class": "com.launcher.launcher.FancyLauncher")
     }
 }
 

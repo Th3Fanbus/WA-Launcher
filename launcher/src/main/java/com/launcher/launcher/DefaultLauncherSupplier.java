@@ -13,9 +13,9 @@ import java.awt.*;
 
 public class DefaultLauncherSupplier implements Supplier<Window> {
 
-    private final Launcher launcher;
+    private final FancyLauncher launcher;
 
-    public DefaultLauncherSupplier(Launcher launcher) {
+    public DefaultLauncherSupplier(FancyLauncher launcher) {
         this.launcher = launcher;
     }
 

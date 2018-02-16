@@ -49,7 +49,7 @@ import java.util.logging.Level;
  * The main entry point for the launcher.
  */
 @Log
-public final class Launcher {
+public final class FancyLauncher {
 
     public static final int PROTOCOL_VERSION = 2;
 
@@ -72,7 +72,7 @@ public final class Launcher {
      * @param baseDir the base directory
      * @throws java.io.IOException on load error
      */
-    public Launcher(@NonNull File baseDir) throws IOException {
+    public FancyLauncher(@NonNull File baseDir) throws IOException {
         this(baseDir, baseDir);
     }
 
@@ -84,11 +84,11 @@ public final class Launcher {
      * @param configDir the config directory
      * @throws java.io.IOException on load error
      */
-    public Launcher(@NonNull File baseDir, @NonNull File configDir) throws IOException {
+    public FancyLauncher(@NonNull File baseDir, @NonNull File configDir) throws IOException {
         SharedLocale.loadBundle("com.launcher.launcher.lang.Launcher", Locale.getDefault());
 
         this.baseDir = baseDir;
-        this.properties = LauncherUtils.loadProperties(Launcher.class, "launcher.properties", "com.launcher.launcher.propertiesFile");
+        this.properties = LauncherUtils.loadProperties(FancyLauncher.class, "launcher.properties", "com.launcher.launcher.propertiesFile");
         this.instances = new InstanceList(this);
         this.assets = new AssetsRoot(new File(baseDir, "assets"));
         this.config = Persistence.load(new File(configDir, "config.json"), Configuration.class);
@@ -380,7 +380,7 @@ public final class Launcher {
      * @throws ParameterException thrown on a bad parameter
      * @throws IOException throw on an I/O error
      */
-    public static Launcher createFromArguments(String[] args) throws ParameterException, IOException {
+    public static FancyLauncher createFromArguments(String[] args) throws ParameterException, IOException {
         String osName = System.getProperty("os.name").toLowerCase();
         String version = System.getProperty("sun.arch.data.model");
         log.log(Level.INFO, "Operating system string: {0}", osName);
@@ -399,7 +399,7 @@ public final class Launcher {
             log.log(Level.INFO, "Using current directory {0}", dir.getAbsolutePath());
         }
 
-        return new Launcher(dir);
+        return new FancyLauncher(dir);
     }
 
     /**
@@ -421,8 +421,8 @@ public final class Launcher {
             @Override
             public void run() {
 	        try {
-                    Thread.currentThread().setContextClassLoader(Launcher.class.getClassLoader());
-                    UIManager.getLookAndFeelDefaults().put("ClassLoader", Launcher.class.getClassLoader());
+                    Thread.currentThread().setContextClassLoader(FancyLauncher.class.getClassLoader());
+                    UIManager.getLookAndFeelDefaults().put("ClassLoader", FancyLauncher.class.getClassLoader());
                     UIManager.getDefaults().put("SplitPane.border", BorderFactory.createEmptyBorder());
                     JFrame.setDefaultLookAndFeelDecorated(true);
                     JDialog.setDefaultLookAndFeelDecorated(true);
@@ -433,7 +433,7 @@ public final class Launcher {
                         UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
                     }
 
-                    Launcher launcher = Launcher.createFromArguments(args);
+                    FancyLauncher launcher = FancyLauncher.createFromArguments(args);
                     launcher.setMainWindowSupplier(new CustomWindowSupplier(launcher));
                     launcher.showLauncherWindow();
                 } catch (Throwable t) {
@@ -448,9 +448,9 @@ public final class Launcher {
     
     private static class CustomWindowSupplier implements Supplier<Window> {
 
-        private final Launcher launcher;
+        private final FancyLauncher launcher;
 
-        private CustomWindowSupplier(Launcher launcher) {
+        private CustomWindowSupplier(FancyLauncher launcher) {
             this.launcher = launcher;
         }
 

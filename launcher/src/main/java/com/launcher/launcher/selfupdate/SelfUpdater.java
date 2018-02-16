@@ -8,7 +8,7 @@ package com.launcher.launcher.selfupdate;
 
 import com.launcher.concurrency.DefaultProgress;
 import com.launcher.concurrency.ProgressObservable;
-import com.launcher.launcher.Launcher;
+import com.launcher.launcher.FancyLauncher;
 import com.launcher.launcher.install.FileMover;
 import com.launcher.launcher.install.Installer;
 import com.launcher.launcher.util.SharedLocale;
@@ -22,12 +22,12 @@ import java.util.concurrent.Executors;
 
 public class SelfUpdater implements Callable<File>, ProgressObservable {
 
-    private final Launcher launcher;
+    private final FancyLauncher launcher;
     private final URL url;
     private final Installer installer;
     private ProgressObservable progress = new DefaultProgress(0, SharedLocale.tr("updater.updating"));
 
-    public SelfUpdater(@NonNull Launcher launcher, @NonNull URL url) {
+    public SelfUpdater(@NonNull FancyLauncher launcher, @NonNull URL url) {
         this.launcher = launcher;
         this.url = url;
         this.installer = new Installer(launcher.getInstallerDir());

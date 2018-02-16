@@ -7,7 +7,7 @@
 package com.launcher.launcher.dialog;
 
 import com.launcher.launcher.Configuration;
-import com.launcher.launcher.Launcher;
+import com.launcher.launcher.FancyLauncher;
 import com.launcher.launcher.swing.*;
 import com.launcher.launcher.persistence.Persistence;
 import com.launcher.launcher.util.SharedLocale;
@@ -57,7 +57,7 @@ public class ConfigurationDialog extends JDialog {
      * @param owner the window owner
      * @param launcher the launcher
      */
-    public ConfigurationDialog(Window owner, @NonNull Launcher launcher) {
+    public ConfigurationDialog(Window owner, @NonNull FancyLauncher launcher) {
         super(owner, ModalityType.DOCUMENT_MODAL);
 
         this.config = launcher.getConfig();

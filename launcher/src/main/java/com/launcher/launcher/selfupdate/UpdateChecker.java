@@ -6,7 +6,7 @@
 
 package com.launcher.launcher.selfupdate;
 
-import com.launcher.launcher.Launcher;
+import com.launcher.launcher.FancyLauncher;
 import com.launcher.launcher.LauncherException;
 import com.launcher.launcher.util.HttpRequest;
 import com.launcher.launcher.util.SharedLocale;
@@ -23,9 +23,9 @@ import java.util.concurrent.Callable;
 @Log
 public class UpdateChecker implements Callable<URL> {
 
-    private final Launcher launcher;
+    private final FancyLauncher launcher;
 
-    public UpdateChecker(@NonNull Launcher launcher) {
+    public UpdateChecker(@NonNull FancyLauncher launcher) {
         this.launcher = launcher;
     }
 

@@ -49,7 +49,7 @@ public class Runner implements Callable<Process>, ProgressObservable {
     private ProgressObservable progress = new DefaultProgress(0, SharedLocale.tr("runner.preparing"));
 
     private final ObjectMapper mapper = new ObjectMapper();
-    private final Launcher launcher;
+    private final FancyLauncher launcher;
     private final Instance instance;
     private final Session session;
     private final File extractDir;
@@ -70,7 +70,7 @@ public class Runner implements Callable<Process>, ProgressObservable {
      * @param session the session
      * @param extractDir the directory to extract to
      */
-    public Runner(@NonNull Launcher launcher, @NonNull Instance instance,
+    public Runner(@NonNull FancyLauncher launcher, @NonNull Instance instance,
                   @NonNull Session session, @NonNull File extractDir) {
         this.launcher = launcher;
         this.instance = instance;

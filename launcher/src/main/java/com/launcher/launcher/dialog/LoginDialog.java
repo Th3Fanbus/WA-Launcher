@@ -12,7 +12,7 @@ import com.google.common.util.concurrent.Futures;
 import com.launcher.concurrency.ObservableFuture;
 import com.launcher.concurrency.ProgressObservable;
 import com.launcher.launcher.Configuration;
-import com.launcher.launcher.Launcher;
+import com.launcher.launcher.FancyLauncher;
 import com.launcher.launcher.auth.*;
 import com.launcher.launcher.swing.*;
 import com.launcher.launcher.persistence.Persistence;
@@ -34,7 +34,7 @@ import java.util.concurrent.Callable;
  */
 public class LoginDialog extends JDialog {
 
-    private final Launcher launcher;
+    private final FancyLauncher launcher;
     @Getter private final AccountList accounts;
     @Getter private Session session;
 
@@ -56,7 +56,7 @@ public class LoginDialog extends JDialog {
      * @param owner the owner
      * @param launcher the launcher
      */
-    public LoginDialog(Window owner, @NonNull Launcher launcher) {
+    public LoginDialog(Window owner, @NonNull FancyLauncher launcher) {
         super(owner, ModalityType.DOCUMENT_MODAL);
 
         this.launcher = launcher;
@@ -341,7 +341,7 @@ public class LoginDialog extends JDialog {
         dispose();
     }
 
-    public static Session showLoginRequest(Window owner, Launcher launcher) {
+    public static Session showLoginRequest(Window owner, FancyLauncher launcher) {
         LoginDialog dialog = new LoginDialog(owner, launcher);
         dialog.setVisible(true);
         return dialog.getSession();

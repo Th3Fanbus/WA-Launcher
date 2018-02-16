@@ -8,7 +8,7 @@ package com.launcher.launcher.swing;
 
 import com.launcher.launcher.Instance;
 import com.launcher.launcher.InstanceList;
-import com.launcher.launcher.Launcher;
+import com.launcher.launcher.FancyLauncher;
 import com.launcher.launcher.util.SharedLocale;
 
 import javax.swing.*;
@@ -23,9 +23,9 @@ public class InstanceTableModel extends AbstractTableModel {
 
     public InstanceTableModel(InstanceList instances) {
         this.instances = instances;
-        instanceIcon = SwingHelper.createIcon(Launcher.class, "instance_icon.png", 16, 16);
-        customInstanceIcon = SwingHelper.createIcon(Launcher.class, "custom_instance_icon.png", 16, 16);
-        downloadIcon = SwingHelper.createIcon(Launcher.class, "download_icon.png", 14, 14);
+        instanceIcon = SwingHelper.createIcon(FancyLauncher.class, "instance_icon.png", 16, 16);
+        customInstanceIcon = SwingHelper.createIcon(FancyLauncher.class, "custom_instance_icon.png", 16, 16);
+        downloadIcon = SwingHelper.createIcon(FancyLauncher.class, "download_icon.png", 14, 14);
     }
 
     public void update() {

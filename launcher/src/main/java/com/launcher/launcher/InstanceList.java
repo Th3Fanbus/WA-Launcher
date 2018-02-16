@@ -36,7 +36,7 @@ import java.util.logging.Level;
 @Log
 public class InstanceList {
 
-    private final Launcher launcher;
+    private final FancyLauncher launcher;
     @Getter private final List<Instance> instances = new ArrayList<Instance>();
 
     /**
@@ -44,7 +44,7 @@ public class InstanceList {
      *
      * @param launcher the launcher
      */
-    public InstanceList(@NonNull Launcher launcher) {
+    public InstanceList(@NonNull FancyLauncher launcher) {
         this.launcher = launcher;
     }
 
@@ -141,7 +141,7 @@ public class InstanceList {
                         .returnContent()
                         .asJson(PackageList.class);
 
-                if (packages.getMinimumVersion() > Launcher.PROTOCOL_VERSION) {
+                if (packages.getMinimumVersion() > FancyLauncher.PROTOCOL_VERSION) {
                     throw new LauncherException("Update required", SharedLocale.tr("errors.updateRequiredError"));
                 }
 
