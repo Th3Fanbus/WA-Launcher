@@ -1,6 +1,6 @@
 JJ=java -jar
-LAUNCHER=launcher-6.1.3-all.jar
-LAUNCHER_MAIN=launcher-main-6.1.3-all.jar
+LAUNCHER=launcher-*-all.jar
+LAUNCHER_MAIN=launcher-main-*-all.jar
 
 all: Launcher
 
