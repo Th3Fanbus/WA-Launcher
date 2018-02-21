@@ -65,7 +65,7 @@ public class LauncherFrame extends JFrame {
 
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new Dimension(500, 400));
-		setResizable(false);
+        setResizable(false);
         initComponents();
         pack();
         setLocationRelativeTo(null);

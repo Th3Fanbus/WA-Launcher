@@ -6,6 +6,7 @@
 
 package com.launcher.launcher;
 
+import com.beust.jcommander.JCommander;
 import com.beust.jcommander.ParameterException;
 import com.google.common.base.Strings;
 import com.google.common.base.Supplier;
@@ -21,7 +22,6 @@ import com.launcher.launcher.persistence.Persistence;
 import com.launcher.launcher.swing.SwingHelper;
 import com.launcher.launcher.update.UpdateManager;
 import com.launcher.launcher.util.HttpRequest;
-import com.launcher.launcher.util.Platform;
 import com.launcher.launcher.util.SharedLocale;
 import com.launcher.launcher.util.SimpleLogFormatter;
 import com.sun.management.OperatingSystemMXBean;
@@ -387,7 +387,12 @@ public final class FancyLauncher {
         log.log(Level.INFO, "Java version string: {0}", version);
         
         LauncherArguments options = new LauncherArguments();
-
+        
+        JCommander.newBuilder()
+            .addObject(options)
+            .build()
+            .parse(args);
+        
         Integer bsVersion = options.getBootstrapVersion();
         log.info(bsVersion != null ? "Bootstrap version " + bsVersion + " detected" : "Not bootstrapped");
 
