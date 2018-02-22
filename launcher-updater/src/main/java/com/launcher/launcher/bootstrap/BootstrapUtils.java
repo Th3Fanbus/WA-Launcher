@@ -8,7 +8,7 @@ import java.util.regex.Pattern;
 
 public final class BootstrapUtils {
 
-    private static final Pattern absoluteUrlPattern = Pattern.compile("^[A-Za-z0-9\\-]+://.*$");
+    private static final Pattern URL_PATTERN = Pattern.compile("^[A-Za-z0-9\\-]+://.*$");
 
     private BootstrapUtils() {
     }

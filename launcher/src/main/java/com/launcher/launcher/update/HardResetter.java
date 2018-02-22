@@ -56,13 +56,14 @@ public class HardResetter implements Callable<Instance>, ProgressObservable {
         try {
             if (dir.isDirectory()) {
                 currentDir = dir;
-                LauncherUtils.interruptibleDelete(dir, new ArrayList<File>());
+                LauncherUtils.interruptibleDelete(dir, new ArrayList<>());
             }
         } finally {
             currentDir = null;
         }
     }
 
+    @Override
     public String toString() {
         File dir = currentDir;
         if (dir != null) {

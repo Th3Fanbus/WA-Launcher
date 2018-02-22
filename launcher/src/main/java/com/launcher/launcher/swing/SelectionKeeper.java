@@ -23,18 +23,22 @@ public class SelectionKeeper implements ListSelectionListener, ListDataListener 
         this.list = list;
     }
 
+    @Override
     public void intervalAdded(ListDataEvent e) {
         list.setSelectedValue(lastSelected, true);
     }
 
+    @Override
     public void intervalRemoved(ListDataEvent e) {
         list.setSelectedValue(lastSelected, true);
     }
 
+    @Override
     public void contentsChanged(ListDataEvent e) {
         list.setSelectedValue(lastSelected, true);
     }
 
+    @Override
     public void valueChanged(ListSelectionEvent e) {
         if (!e.getValueIsAdjusting()) {
             lastSelected = list.getSelectedValue();

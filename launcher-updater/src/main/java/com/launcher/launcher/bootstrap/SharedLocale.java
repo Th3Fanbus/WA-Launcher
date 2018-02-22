@@ -4,6 +4,7 @@ import lombok.NonNull;
 import lombok.extern.java.Log;
 
 import java.text.MessageFormat;
+import java.util.Arrays;
 import java.util.Locale;
 import java.util.MissingResourceException;
 import java.util.ResourceBundle;
@@ -76,7 +77,7 @@ public class SharedLocale {
             }
         }
 
-        return "${" + key + "}:" + args;
+        return "${" + key + "}:" + Arrays.toString(args);
     }
 
     /**

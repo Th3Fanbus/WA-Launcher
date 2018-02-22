@@ -88,6 +88,7 @@ public final class SwingHelper {
      *                        null to use the default frame
      * @param message the message to display
      * @param title the title string for the dialog
+     * @param detailsText
      * @param messageType see {@link javax.swing.JOptionPane#showMessageDialog(java.awt.Component, Object, String, int)}
      *                    for available message types
      */
@@ -113,7 +114,7 @@ public final class SwingHelper {
                 textArea.setFont(tempLabel.getFont());
                 textArea.setBackground(tempLabel.getBackground());
                 textArea.setTabSize(2);
-                textArea.setEditable(false);;
+                textArea.setEditable(false);
 
                 JScrollPane scrollPane = new JScrollPane(textArea);
                 scrollPane.setPreferredSize(new Dimension(350, 120));

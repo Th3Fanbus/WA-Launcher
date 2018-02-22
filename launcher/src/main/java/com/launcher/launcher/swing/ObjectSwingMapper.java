@@ -18,7 +18,7 @@ import java.util.List;
 
 public class ObjectSwingMapper {
 
-    private final List<FieldMapping> mappings = new ArrayList<FieldMapping>();
+    private final List<FieldMapping> mappings = new ArrayList<>();
     private final Object object;
 
     public ObjectSwingMapper(@NonNull Object object) {
@@ -42,7 +42,7 @@ public class ObjectSwingMapper {
     }
 
     private <V> MutatorAccessorField<V> getField(@NonNull String field, Class<V> clazz) {
-        return new MutatorAccessorField<V>(object, field, clazz);
+        return new MutatorAccessorField<>(object, field, clazz);
     }
 
     public void map(@NonNull final JTextComponent textComponent, String name) {
@@ -111,28 +111,28 @@ public class ObjectSwingMapper {
             this.object = object;
             this.clazz = clazz;
 
-            Method mutator = null;
-            Method accessor = null;
+            Method _mutator = null;
+            Method _accessor = null;
             for (Method method : object.getClass().getMethods()) {
                 if (isAccessor(method, name)) {
-                    accessor = method;
+                    _accessor = method;
                 } else if (isMutator(method, name)) {
-                    mutator = method;
+                    _mutator = method;
                 }
             }
 
-            if (accessor == null) {
+            if (_accessor == null) {
                 throw new NoSuchMethodError("Failed to find accessor pair on " +
                         object.getClass().getCanonicalName() + " for " + name);
             }
 
-            if (mutator == null) {
+            if (_mutator == null) {
                 throw new NoSuchMethodError("Failed to find mutator pair on " +
                         object.getClass().getCanonicalName() + " for " + name);
             }
 
-            this.mutator = mutator;
-            this.accessor = accessor;
+            this.mutator = _mutator;
+            this.accessor = _accessor;
         }
 
         private boolean isAccessor(Method method, String name) {
@@ -160,9 +160,7 @@ public class ObjectSwingMapper {
             try {
                 Object value = accessor.invoke(object);
                 return (V) value;
-            } catch (IllegalAccessException e) {
-                throw new RuntimeException(e);
-            } catch (InvocationTargetException e) {
+            } catch (IllegalAccessException | InvocationTargetException e) {
                 throw new RuntimeException(e);
             }
         }
@@ -170,9 +168,7 @@ public class ObjectSwingMapper {
         public void set(V value) {
             try {
                 mutator.invoke(object, value);
-            } catch (IllegalAccessException e) {
-                throw new RuntimeException(e);
-            } catch (InvocationTargetException e) {
+            } catch (IllegalAccessException | InvocationTargetException e) {
                 throw new RuntimeException(e);
             }
         }

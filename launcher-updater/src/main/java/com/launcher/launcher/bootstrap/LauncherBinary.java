@@ -34,7 +34,7 @@ public class LauncherBinary implements Comparable<LauncherBinary> {
 
     public File getExecutableJar() throws IOException {
         if (packed) {
-            log.log(Level.INFO, "Need to unpack " + path.getAbsolutePath());
+            log.log(Level.INFO, "Need to unpack {0}", path.getAbsolutePath());
 
             String packName = path.getName();
             File outputPath = new File(path.getParentFile(), packName.substring(0, packName.length() - 5));

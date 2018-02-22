@@ -26,7 +26,7 @@ public class HttpRequest implements Closeable, ProgressObservable {
     private static final int READ_TIMEOUT = 1000 * 60 * 10;
     private static final int READ_BUFFER_SIZE = 1024 * 8;
 
-    private final Map<String, String> headers = new HashMap<String, String>();
+    private final Map<String, String> headers = new HashMap<>();
     private final String method;
     @Getter
     private final URL url;
@@ -75,7 +75,6 @@ public class HttpRequest implements Closeable, ProgressObservable {
 
     /**
      * Execute the request.
-     * <p/>
      * After execution, {@link #close()} should be called.
      *
      * @return this object
@@ -109,10 +108,10 @@ public class HttpRequest implements Closeable, ProgressObservable {
             conn.connect();
 
             if (body != null) {
-                DataOutputStream out = new DataOutputStream(conn.getOutputStream());
-                out.write(body);
-                out.flush();
-                out.close();
+                try (DataOutputStream out = new DataOutputStream(conn.getOutputStream())) {
+                    out.write(body);
+                    out.flush();
+                }
             }
 
             inputStream = conn.getResponseCode() == HttpURLConnection.HTTP_OK ?
@@ -185,7 +184,7 @@ public class HttpRequest implements Closeable, ProgressObservable {
 
         try {
             ByteArrayOutputStream bos = new ByteArrayOutputStream();
-            int b = 0;
+            int b;
             while ((b = inputStream.read()) != -1) {
                 checkInterrupted();
                 bos.write(b);
@@ -247,7 +246,7 @@ public class HttpRequest implements Closeable, ProgressObservable {
             bis = new BufferedInputStream(inputStream);
 
             byte[] data = new byte[READ_BUFFER_SIZE];
-            int len = 0;
+            int len;
             while ((len = bis.read(data, 0, READ_BUFFER_SIZE)) >= 0) {
                 out.write(data, 0, len);
                 readBytes += len;
@@ -335,9 +334,7 @@ public class HttpRequest implements Closeable, ProgressObservable {
                     url.getPath(), url.getQuery(), url.getRef());
             url = uri.toURL();
             return url;
-        } catch (MalformedURLException e) {
-            return existing;
-        } catch (URISyntaxException e) {
+        } catch (MalformedURLException | URISyntaxException e) {
             return existing;
         }
     }
@@ -346,7 +343,7 @@ public class HttpRequest implements Closeable, ProgressObservable {
      * Used with {@link #bodyForm(Form)}.
      */
     public final static class Form {
-        public final List<String> elements = new ArrayList<String>();
+        public final List<String> elements = new ArrayList<>();
 
         private Form() {
         }
@@ -427,6 +424,8 @@ public class HttpRequest implements Closeable, ProgressObservable {
          * Return the result as an instance of the given class that has been
          * deserialized from a XML payload.
          *
+         * @param <T>
+         * @param cls
          * @return the object
          * @throws java.io.IOException on I/O error
          */

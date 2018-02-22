@@ -236,7 +236,7 @@ public final class WebpagePanel extends JPanel {
     }
     
     private class FetchWebpage implements Runnable {
-        private URL url;
+        private final URL url;
         
         public FetchWebpage(URL url) {
             this.url = url;
@@ -270,7 +270,7 @@ public final class WebpagePanel extends JPanel {
 
                 StringBuilder s = new StringBuilder();
                 char[] buf = new char[1024];
-                int len = 0;
+                int len;
                 while ((len = reader.read(buf)) != -1) {
                     s.append(buf, 0, len);
                 }
@@ -290,7 +290,7 @@ public final class WebpagePanel extends JPanel {
             } finally {
                 if (conn != null)
                     conn.disconnect();
-                conn = null;
+                //conn = null;
             }
         }
     }

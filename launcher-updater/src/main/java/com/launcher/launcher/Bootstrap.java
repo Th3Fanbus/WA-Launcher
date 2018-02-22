@@ -50,11 +50,11 @@ public class Bootstrap {
     public Bootstrap(boolean portable, String[] args) throws IOException {
         this.properties = BootstrapUtils.loadProperties(Bootstrap.class, "bootstrap.properties");
 
-        File baseDir = portable ? new File(".") : getUserLauncherDir();
+        File _baseDir = portable ? new File(".") : getUserLauncherDir();
 
-        this.baseDir = baseDir;
+        this.baseDir = _baseDir;
         this.portable = portable;
-        this.binariesDir = new File(baseDir, "launcher");
+        this.binariesDir = new File(_baseDir, "launcher");
         this.originalArgs = args;
 
         binariesDir.mkdirs();
@@ -77,11 +77,11 @@ public class Bootstrap {
 
     public void launch() throws Throwable {
         File[] files = binariesDir.listFiles(new LauncherBinary.Filter());
-        List<LauncherBinary> binaries = new ArrayList<LauncherBinary>();
+        List<LauncherBinary> binaries = new ArrayList<>();
 
         if (files != null) {
             for (File file : files) {
-                Bootstrap.log.info("Found " + file.getAbsolutePath() + "...");
+                Bootstrap.log.log(Level.INFO, "Found {0}...", file.getAbsolutePath());
                 binaries.add(new LauncherBinary(file));
             }
         }
@@ -108,12 +108,12 @@ public class Bootstrap {
             File testFile = binary.getPath();
             try {
                 testFile = binary.getExecutableJar();
-                Bootstrap.log.info("Trying " + testFile.getAbsolutePath() + "...");
+                Bootstrap.log.log(Level.INFO, "Trying {0}...", testFile.getAbsolutePath());
                 clazz = load(testFile);
                 Bootstrap.log.info("Launcher loaded successfully.");
                 working = binary;
                 break;
-            } catch (Throwable t) {
+            } catch (IOException | ClassNotFoundException t) {
                 Bootstrap.log.log(Level.WARNING, "Failed to load " + testFile.getAbsoluteFile(), t);
             }
         }
@@ -121,7 +121,7 @@ public class Bootstrap {
         if (working != null) {
             for (LauncherBinary binary : binaries) {
                 if (working != binary) {
-                    log.info("Removing " + binary.getPath() + "...");
+                    log.log(Level.INFO, "Removing {0}...", binary.getPath());
                     binary.remove();
                 }
             }
@@ -159,7 +159,7 @@ public class Bootstrap {
         System.arraycopy(launcherArgs, 0, args, 0, launcherArgs.length);
         System.arraycopy(originalArgs, 0, args, launcherArgs.length, originalArgs.length);
 
-        log.info("Launching with arguments " + Arrays.toString(args));
+        log.log(Level.INFO, "Launching with arguments {0}", Arrays.toString(args));
 
         method.invoke(null, new Object[] { args });
     }
@@ -174,7 +174,7 @@ public class Bootstrap {
     public static void setSwingLookAndFeel() {
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-        } catch (Throwable e) {
+        } catch (ClassNotFoundException | IllegalAccessException | InstantiationException | UnsupportedLookAndFeelException e) {
         }
     }
 

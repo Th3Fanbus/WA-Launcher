@@ -164,6 +164,7 @@ public final class SwingHelper {
      *                        null to use the default frame
      * @param message the message to display
      * @param title the title string for the dialog
+     * @param detailsText
      * @param messageType see {@link javax.swing.JOptionPane#showMessageDialog(java.awt.Component, Object, String, int)}
      *                    for available message types
      */
@@ -448,7 +449,7 @@ public final class SwingHelper {
         try {
             UIManager.setLookAndFeel(lookAndFeel);
             return true;
-        } catch (Exception e) {
+        } catch (ClassNotFoundException | IllegalAccessException | InstantiationException | UnsupportedLookAndFeelException e) {
             log.log(Level.WARNING, "Failed to set look and feel to " + lookAndFeel, e);
             return false;
         }

@@ -12,7 +12,7 @@ import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-public class LinkButton extends JButton {
+public final class LinkButton extends JButton {
 
     private static final Color LINK_COLOR = Color.blue;
     private static final Border LINK_BORDER = BorderFactory.createEmptyBorder(0, 0, 1, 0); 

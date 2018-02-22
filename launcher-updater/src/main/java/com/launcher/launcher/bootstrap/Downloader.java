@@ -37,7 +37,7 @@ public class Downloader implements Runnable, ProgressObservable {
         } catch (InterruptedException e) {
             log.log(Level.WARNING, "Interrupted");
             System.exit(0);
-        } catch (Throwable t) {
+        } catch (Exception t) {
             log.log(Level.WARNING, "Failed to download launcher", t);
             SwingHelper.showErrorDialog(null, tr("errors.failedDownloadError"), tr("errorTitle"), t);
             System.exit(0);
@@ -59,7 +59,7 @@ public class Downloader implements Runnable, ProgressObservable {
         File tempFile = new File(finalFile.getParentFile(), finalFile.getName() + ".tmp");
         URL updateUrl = HttpRequest.url(bootstrap.getProperties().getProperty("latestUrl"));
 
-        log.info("Reading update URL " + updateUrl + "...");
+        log.log(Level.INFO, "Reading update URL {0}...", updateUrl);
 
         try {
             String data = HttpRequest
@@ -77,17 +77,17 @@ public class Downloader implements Runnable, ProgressObservable {
                 if (rawUrl != null) {
                     url = HttpRequest.url(rawUrl.trim());
                 } else {
-                    log.warning("Did not get valid update document - got:\n\n" + data);
+                    log.log(Level.WARNING, "Did not get valid update document - got:\n\n{0}", data);
                     throw new IOException("Update URL did not return a valid result");
                 }
             } else {
-                log.warning("Did not get valid update document - got:\n\n" + data);
+                log.log(Level.WARNING, "Did not get valid update document - got:\n\n{0}", data);
                 throw new IOException("Update URL did not return a valid result");
             }
 
             checkInterrupted();
 
-            log.info("Downloading " + url + " to " + tempFile.getAbsolutePath());
+            log.log(Level.INFO, "Downloading {0} to {1}", new Object[]{url, tempFile.getAbsolutePath()});
 
             httpRequest = HttpRequest.get(url);
             httpRequest
@@ -108,7 +108,7 @@ public class Downloader implements Runnable, ProgressObservable {
         }
 
         LauncherBinary binary = new LauncherBinary(finalFile);
-        List<LauncherBinary> binaries = new ArrayList<LauncherBinary>();
+        List<LauncherBinary> binaries = new ArrayList<>();
         binaries.add(binary);
         bootstrap.launchExisting(binaries, false);
     }
@@ -118,9 +118,9 @@ public class Downloader implements Runnable, ProgressObservable {
     }
 
     public String getStatus() {
-        HttpRequest httpRequest = this.httpRequest;
-        if (httpRequest != null) {
-            double progress = httpRequest.getProgress();
+        HttpRequest _httpRequest = this.httpRequest;
+        if (_httpRequest != null) {
+            double progress = _httpRequest.getProgress();
             if (progress >= 0) {
                 return String.format(tr("downloader.progressStatus"), progress * 100);
             }
@@ -131,7 +131,7 @@ public class Downloader implements Runnable, ProgressObservable {
 
     @Override
     public double getProgress() {
-        HttpRequest httpRequest = this.httpRequest;
-        return httpRequest != null ? httpRequest.getProgress() : -1;
+        HttpRequest _httpRequest = this.httpRequest;
+        return _httpRequest != null ? _httpRequest.getProgress() : -1;
     }
 }
