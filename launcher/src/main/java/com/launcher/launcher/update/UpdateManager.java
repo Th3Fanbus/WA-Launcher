@@ -72,7 +72,7 @@ public class UpdateManager {
 
         if (url != null) {
             SelfUpdater downloader = new SelfUpdater(launcher, url);
-            ObservableFuture<File> future = new ObservableFuture<File>(
+            ObservableFuture<File> future = new ObservableFuture<>(
                     launcher.getExecutor().submit(downloader), downloader);
 
             Futures.addCallback(future, new FutureCallback<File>() {

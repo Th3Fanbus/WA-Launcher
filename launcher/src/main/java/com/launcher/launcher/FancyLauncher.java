@@ -441,10 +441,9 @@ public final class FancyLauncher {
                     FancyLauncher launcher = FancyLauncher.createFromArguments(args);
                     launcher.setMainWindowSupplier(new CustomWindowSupplier(launcher));
                     launcher.showLauncherWindow();
-                } catch (Throwable t) {
+                } catch (ParameterException | IOException | ClassNotFoundException | IllegalAccessException | InstantiationException | UnsupportedLookAndFeelException t) {
                     log.log(Level.WARNING, "Load failure", t);
-                    SwingHelper.showErrorDialog(null, "Uh oh! The updater couldn't be opened because a "
-                            + "problem was encountered.", "Launcher error", t);
+                    SwingHelper.showErrorDialog(null, "Uh oh! The updater couldn't be opened because a problem was encountered.", "Launcher error", t);
                 }
             }
         });

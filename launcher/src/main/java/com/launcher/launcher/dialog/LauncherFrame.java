@@ -29,7 +29,9 @@ import java.io.File;
 import java.lang.ref.WeakReference;
 
 import static com.launcher.launcher.util.SharedLocale.tr;
+import java.io.IOException;
 import java.net.URI;
+import java.net.URISyntaxException;
 
 /**
  * The main launcher frame.
@@ -49,8 +51,10 @@ public class LauncherFrame extends JFrame {
     private final JButton launchButton = new JButton("<html><img src=https://www.worldautomation.net/images/launcher-launch.png>");
     private final JButton refreshButton = new JButton("<html><img src=https://www.worldautomation.net/images/launcher-refresh.png>");
     private final JButton optionsButton = new JButton("<html><img src=https://www.worldautomation.net/images/launcher-options.png>");
-    private final JButton selfUpdateButton =new JButton("<html><img src=https://www.worldautomation.net/images/launcher-update.png>");	
+    //private final JButton selfUpdateButton = new JButton("<html><img src=https://www.worldautomation.net/images/launcher-update.png>");	
+    private final JButton specsUpdateButton = new JButton("<html><img src=https://www.worldautomation.net/images/launcher-specs.png>");
     private final JCheckBox updateCheck = new JCheckBox(SharedLocale.tr("launcher.downloadUpdates"));
+    private boolean isUpdateable = false;
 
     /**
      * Create a new frame.
@@ -92,12 +96,23 @@ public class LauncherFrame extends JFrame {
         container.setLayout(new MigLayout("fill, insets dialog", "[][]push[][]", "[grow][]"));
         webView = createNewsPanel();
         splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, instanceScroll, webView);
-        selfUpdateButton.setVisible(launcher.getUpdateManager().getPendingUpdate());
+        isUpdateable = launcher.getUpdateManager().getPendingUpdate();
+        if (isUpdateable) {
+            specsUpdateButton.setText("<html><img src=https://www.worldautomation.net/images/launcher-update.png>");
+        } else {
+            specsUpdateButton.setText("<html><img src=https://www.worldautomation.net/images/launcher-specs.png>");
+        }
+        specsUpdateButton.setVisible(true);
         launcher.getUpdateManager().addPropertyChangeListener(new PropertyChangeListener() {
             @Override
             public void propertyChange(PropertyChangeEvent evt) {
                 if (evt.getPropertyName().equals("pendingUpdate")) {
-                    selfUpdateButton.setVisible((Boolean) evt.getNewValue());
+                    isUpdateable = (boolean) evt.getNewValue();
+                    if (isUpdateable) {
+                        specsUpdateButton.setText("<html><img src=https://www.worldautomation.net/images/launcher-update.png>");
+                    } else {
+                        specsUpdateButton.setText("<html><img src=https://www.worldautomation.net/images/launcher-specs.png>");
+                    }
 
                 }
             }
@@ -116,14 +131,14 @@ public class LauncherFrame extends JFrame {
         container.add(refreshButton);
         container.add(updateCheck);
 
-		JButton discordButton = new JButton("<html><img src=https://www.worldautomation.net/images/launcher-discord.png>");
-		container.add(discordButton);
-		discordButton.addActionListener(ActionListeners.openURL(this, "https://discord.gg/Dvjvtee"));
+	JButton discordButton = new JButton("<html><img src=https://www.worldautomation.net/images/launcher-discord.png>");
+	container.add(discordButton);
+	discordButton.addActionListener(ActionListeners.openURL(this, "https://discord.gg/Dvjvtee"));
 
-		JButton logButton = new JButton("<html><img src=https://www.worldautomation.net/images/launcher-log.png>");
-		container.add(logButton);
-		
-        container.add(selfUpdateButton);
+	JButton logButton = new JButton("<html><img src=https://www.worldautomation.net/images/launcher-log.png>");
+	container.add(logButton);
+        
+        container.add(specsUpdateButton);
         container.add(optionsButton);
         container.add(launchButton);
 
@@ -149,10 +164,14 @@ public class LauncherFrame extends JFrame {
             }
         });
 
-        selfUpdateButton.addActionListener(new ActionListener() {
+        specsUpdateButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                launcher.getUpdateManager().performUpdate(LauncherFrame.this);
+                if (isUpdateable) {
+                    launcher.getUpdateManager().performUpdate(LauncherFrame.this);
+                } else {
+                    showSpecs();
+                }
             }
         });
 
@@ -382,13 +401,18 @@ public class LauncherFrame extends JFrame {
         configDialog.setVisible(true);
     }
 
-    private void launch() {
+    private void showSpecs() {
+        SpecsDialog specsDialog = new SpecsDialog(this);
+        specsDialog.setVisible(true);
+    }
+
+    private void launch() { // NOTICE: This enforces 64-bit Java!!!
         String version = System.getProperty("sun.arch.data.model");
         if(!version.contains("64")) {
             SwingHelper.showErrorDialog(null, "Uh oh! You need 64-Bit Java 8 Minimum!", "WorldAutomation.Net");
             try {
                 Desktop.getDesktop().browse(new URI("https://java.com/en/download/"));
-            } catch (Exception e) {
+            } catch (IOException | URISyntaxException e) {
             }
             return;
         }
