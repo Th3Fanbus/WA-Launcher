@@ -51,7 +51,6 @@ public class LauncherFrame extends JFrame {
     private final JButton launchButton = new JButton("<html><img src=https://www.worldautomation.net/images/launcher-launch.png>");
     private final JButton refreshButton = new JButton("<html><img src=https://www.worldautomation.net/images/launcher-refresh.png>");
     private final JButton optionsButton = new JButton("<html><img src=https://www.worldautomation.net/images/launcher-options.png>");
-    //private final JButton selfUpdateButton = new JButton("<html><img src=https://www.worldautomation.net/images/launcher-update.png>");	
     private final JButton specsUpdateButton = new JButton("<html><img src=https://www.worldautomation.net/images/launcher-specs.png>");
     private final JCheckBox updateCheck = new JCheckBox(SharedLocale.tr("launcher.downloadUpdates"));
     private boolean isUpdateable = false;
@@ -409,7 +408,7 @@ public class LauncherFrame extends JFrame {
     private void launch() { // NOTICE: This enforces 64-bit Java!!!
         String version = System.getProperty("sun.arch.data.model");
         if(!version.contains("64")) {
-            SwingHelper.showErrorDialog(null, "Uh oh! You need 64-Bit Java 8 Minimum!", "WorldAutomation.Net");
+            SwingHelper.showErrorDialog(null, "Uh oh! You need 64-Bit Java 8 minimum!", "WorldAutomation.Net");
             try {
                 Desktop.getDesktop().browse(new URI("https://java.com/en/download/"));
             } catch (IOException | URISyntaxException e) {

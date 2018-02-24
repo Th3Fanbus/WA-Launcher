@@ -18,6 +18,7 @@ dependencies {
     compile 'com.miglayout:miglayout:3.7.4'
     compile 'com.google.code.findbugs:jsr305:3.0.2'
     compile 'com.github.insubstantial:substance:7.3'
+    compile 'com.github.oshi:oshi-core:3.4.4'
 }
 
 processResources {

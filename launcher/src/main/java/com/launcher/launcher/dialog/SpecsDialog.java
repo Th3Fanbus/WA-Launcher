@@ -12,7 +12,17 @@ import net.miginfocom.swing.MigLayout;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
+import lombok.extern.java.Log;
+import oshi.SystemInfo;
+import oshi.hardware.Baseboard;
+import oshi.hardware.CentralProcessor;
+import oshi.hardware.ComputerSystem;
+import oshi.hardware.Firmware;
+import oshi.hardware.GlobalMemory;
+import oshi.hardware.HardwareAbstractionLayer;
+import oshi.util.FormatUtil;
 
+@Log
 public class SpecsDialog extends JDialog {
 
     public SpecsDialog(Window parent) {
@@ -26,24 +36,41 @@ public class SpecsDialog extends JDialog {
     }
 
     private void initComponents() {
-        String osStr = System.getProperty("os.name") + " " + System.getProperty("os.version") + " " + System.getProperty("os.arch");
-        String javaStr = System.getProperty("java.vendor") + " " + System.getProperty("java.vm.name") + " " + System.getProperty("java.version") ;
+        SystemInfo si = new SystemInfo();
+        final HardwareAbstractionLayer hal = si.getHardware();
+        final ComputerSystem computerSystem = hal.getComputerSystem();
+        final Baseboard baseboard = computerSystem.getBaseboard();
+        final Firmware firmware = computerSystem.getFirmware();
+        final CentralProcessor processor = hal.getProcessor();
+        final GlobalMemory memory = hal.getMemory();
         
+        final String mbStr = baseboard.getManufacturer() + " " + baseboard.getModel() + " " + baseboard.getVersion();
+        final String cpuStr = processor + " (" + processor.getPhysicalProcessorCount() + " cores, " + processor.getLogicalProcessorCount() + " threads)";
+        final String osStr = System.getProperty("os.name") + " version " + System.getProperty("os.version") + " " + System.getProperty("os.arch");
+        final String javaStr = System.getProperty("java.vendor") + " " + System.getProperty("java.vm.name") + " " + System.getProperty("java.version") ;
+        final String memStr = FormatUtil.formatBytes(memory.getAvailable()) + " / " + FormatUtil.formatBytes(memory.getTotal());
+        final String swapStr = FormatUtil.formatBytes(memory.getSwapUsed()) + " / " + FormatUtil.formatBytes(memory.getSwapTotal());
+        
+        final String labelOpts = "align left, wrap";
         JPanel container = new JPanel();
         container.setLayout(new MigLayout("insets dialog"));
         
-        container.add(new JLabel("<html><center><img src=https://www.worldautomation.net/images/launcher-about.png>"), "align center, wrap");
-        
-        //container.add(new JLabel("<html>You are using WA Launcher, an open-source customizable<br>"), "align center, wrap");
-        //container.add(new JLabel("<html>launcher platform that anyone can use.<br><br>"), "align center, wrap");
-        
+        container.add(new JLabel("<html><img src=https://www.worldautomation.net/images/launcher-about.png>"), "align center, wrap");
         container.add(new JLabel("<html><h2>System specifications summary</h2><br>"), "align center, wrap");
-        container.add(new JLabel("<html>Available processor cores: " + Runtime.getRuntime().availableProcessors() + "<br>"), "align center, wrap");
-        //container.add(new JLabel("<html>Free memory (bytes): " + Runtime.getRuntime().freeMemory() + "<br>"), "align center, wrap");
-        container.add(new JLabel("<html>Operating system: " + osStr + "<br>"), "align center, wrap");
-        container.add(new JLabel("<html>Java version: " + javaStr + "<br>"), "align center, wrap");
-        container.add(new JLabel("<html>Java bitness: " + System.getProperty("sun.arch.data.model") + "<br><br>"), "align center, wrap");
-        container.add(new JLabel("<html>```</center><br><br>"), "align center, wrap");
+        container.add(new JLabel("<html><b>Computer manufacturer: </b>" + computerSystem.getManufacturer() + "<br>"), labelOpts);
+        container.add(new JLabel("<html><b>Computer manufacturer: </b>" + computerSystem.getModel() + "<br>"), labelOpts);
+        container.add(new JLabel("<html><b>Motherboard: </b>" + mbStr + "<br>"), labelOpts);
+        container.add(new JLabel("<html><b>Firmware: </b>" + firmware.getManufacturer() + " version " + firmware.getVersion() + "<br>"), labelOpts);
+        container.add(new JLabel("<html><b>CPU: </b>" + cpuStr + "<br>"), labelOpts);
+        container.add(new JLabel("<html><b>CPU identifier: </b>" + processor.getIdentifier() + "<br>"), labelOpts);
+        container.add(new JLabel("<html><b>CPU temperature: </b>" + String.format("%.1f°C%n", hal.getSensors().getCpuTemperature()) + "<br>"), labelOpts);
+        container.add(new JLabel("<html><b>Memory: </b>" + memStr + "<br>"), labelOpts);
+        container.add(new JLabel("<html><b>Swap: </b>" + swapStr + "<br>"), labelOpts);
+        container.add(new JLabel("<html><b>Operating system: </b>" + osStr + "<br>"), labelOpts);
+        container.add(new JLabel("<html><b>Uptime: </b>" + FormatUtil.formatElapsedSecs(processor.getSystemUptime()) + " (HH:MM:SS) <br>"), labelOpts);
+        container.add(new JLabel("<html><b>Java version: </b>" + javaStr + "<br>"), labelOpts);
+        container.add(new JLabel("<html><b>Java bitness: </b>" + System.getProperty("sun.arch.data.model") + "<br><br>"), labelOpts);
+        container.add(new JLabel("<html><br><br>"), "align left, wrap");
         
 	//JButton discordButton = new JButton("<html><img src=https://www.worldautomation.net/images/launcher-about-discord.png>");
 	//container.add(discordButton, "align center, wrap");
@@ -62,7 +89,6 @@ public class SpecsDialog extends JDialog {
         getRootPane().registerKeyboardAction(ActionListeners.dispose(this), KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_IN_FOCUSED_WINDOW);
 
         okButton.addActionListener(ActionListeners.dispose(this));
-
     }
 
     public static void showSpecsDialog(Window parent) {

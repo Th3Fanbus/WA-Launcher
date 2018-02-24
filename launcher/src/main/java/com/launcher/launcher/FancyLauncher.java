@@ -381,17 +381,11 @@ public final class FancyLauncher {
      * @throws IOException throw on an I/O error
      */
     public static FancyLauncher createFromArguments(String[] args) throws ParameterException, IOException {
-        String osName = System.getProperty("os.name").toLowerCase();
-        String version = System.getProperty("sun.arch.data.model");
-        log.log(Level.INFO, "Operating system string: {0}", osName);
-        log.log(Level.INFO, "Java version string: {0}", version);
+        log.log(Level.INFO, "Java version string: {0}", System.getProperty("sun.arch.data.model"));
         
         LauncherArguments options = new LauncherArguments();
         
-        JCommander.newBuilder()
-            .addObject(options)
-            .build()
-            .parse(args);
+        JCommander.newBuilder().addObject(options).build().parse(args);
         
         Integer bsVersion = options.getBootstrapVersion();
         log.info(bsVersion != null ? "Bootstrap version " + bsVersion + " detected" : "Not bootstrapped");
@@ -442,7 +436,7 @@ public final class FancyLauncher {
                     launcher.setMainWindowSupplier(new CustomWindowSupplier(launcher));
                     launcher.showLauncherWindow();
                 } catch (ParameterException | IOException | ClassNotFoundException | IllegalAccessException | InstantiationException | UnsupportedLookAndFeelException t) {
-                    log.log(Level.WARNING, "Load failure", t);
+                    log.log(Level.SEVERE, "Fatal load failure", t);
                     SwingHelper.showErrorDialog(null, "Uh oh! The updater couldn't be opened because a problem was encountered.", "Launcher error", t);
                 }
             }
