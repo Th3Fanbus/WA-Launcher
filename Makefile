@@ -5,7 +5,10 @@ LAUNCHER_MAIN=launcher-main-*-all.jar
 all: Launcher
 
 Launcher:
-	./gradlew clean build
+	./gradlew build
+
+clean:
+	./gradlew clean
 
 run:
 	$(JJ) ./launcher/build/libs/$(LAUNCHER)
