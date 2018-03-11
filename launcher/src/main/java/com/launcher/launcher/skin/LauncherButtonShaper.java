@@ -16,7 +16,7 @@ public class LauncherButtonShaper extends ClassicButtonShaper {
     @Override
     public Dimension getPreferredSize(AbstractButton button, Dimension uiPreferredSize) {
         Dimension size = super.getPreferredSize(button, uiPreferredSize);
-        return new Dimension(size.width + 5, size.height + 4);
+        return new Dimension(size.width - 0, size.height + 4);
     }
 
 }

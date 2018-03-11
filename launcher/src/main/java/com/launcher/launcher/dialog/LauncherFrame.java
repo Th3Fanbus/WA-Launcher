@@ -52,6 +52,7 @@ public class LauncherFrame extends JFrame {
     private final JButton refreshButton = new JButton("<html><img src=https://www.worldautomation.net/images/launcher-refresh.png>");
     private final JButton optionsButton = new JButton("<html><img src=https://www.worldautomation.net/images/launcher-options.png>");
     private final JButton specsUpdateButton = new JButton("<html><img src=https://www.worldautomation.net/images/launcher-specs.png>");
+	private final JButton websiteButton = new JButton("<html><img src=https://www.worldautomation.net/images/launcher-web.png>");
     private final JCheckBox updateCheck = new JCheckBox(SharedLocale.tr("launcher.downloadUpdates"));
     private boolean isUpdateable = false;
 
@@ -67,20 +68,20 @@ public class LauncherFrame extends JFrame {
         instancesModel = new InstanceTableModel(launcher.getInstances());
 
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        setMinimumSize(new Dimension(500, 400));
-        setResizable(false);
+        setMinimumSize(new Dimension(400, 400));
+        //setResizable(true);
         initComponents();
         pack();
         setLocationRelativeTo(null);
 
         SwingHelper.setFrameIcon(this, FancyLauncher.class, "icon.png");
         
-        //setSize(800, 500);
-        //setLocationRelativeTo(null);
+        setSize(800, 530);
+        setLocationRelativeTo(null);
 
-        //SwingHelper.removeOpaqueness(getInstancesTable());
-        //SwingHelper.removeOpaqueness(getInstanceScroll());
-        //getInstanceScroll().setBorder(BorderFactory.createEmptyBorder());
+        SwingHelper.removeOpaqueness(getInstancesTable());
+        SwingHelper.removeOpaqueness(getInstanceScroll());
+        getInstanceScroll().setBorder(BorderFactory.createEmptyBorder());
 
         SwingUtilities.invokeLater(new Runnable() {
             @Override
@@ -94,8 +95,9 @@ public class LauncherFrame extends JFrame {
         JPanel container = createContainerPanel();
         container.setLayout(new MigLayout("fill, insets dialog", "[][]push[][]", "[grow][]"));
         webView = createNewsPanel();
-        splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, instanceScroll, webView);
-        isUpdateable = launcher.getUpdateManager().getPendingUpdate();
+		splitPane = new JSplitPane(JSplitPane.VERTICAL_SPLIT, webView, instanceScroll);
+		splitPane.setSize(800, 530);
+		isUpdateable = launcher.getUpdateManager().getPendingUpdate();
         if (isUpdateable) {
             specsUpdateButton.setText("<html><img src=https://www.worldautomation.net/images/launcher-update.png>");
         } else {
@@ -119,20 +121,27 @@ public class LauncherFrame extends JFrame {
 
         updateCheck.setSelected(true);
         instancesTable.setModel(instancesModel);
-        launchButton.setFont(launchButton.getFont().deriveFont(Font.BOLD));
-        splitPane.setDividerLocation(0);
+		//instancesTable.setFont(new Font("Courier", Font.PLAIN, 15));
+		instancesTable.setRowHeight(20);
+        //launchButton.setFont(new Font("Courier", Font.PLAIN, 15));
+        splitPane.setDividerLocation(300);
         splitPane.setDividerSize(0);
         splitPane.setOpaque(false);
-		
-        container.add(webView, "grow, wrap, span 5, gapbottom unrel, w null:600, h null:400");
-        //SwingHelper.flattenJSplitPane(splitPane);
-		
+        container.add(splitPane, "grow, wrap, span 5, gapbottom unrel, w null:800, h null:550");
+       //container.add(webView);
+	   //container.add(instanceScroll);
+	   //SwingHelper.flattenJSplitPane(splitPane);
+	
         container.add(refreshButton);
         container.add(updateCheck);
 
 	JButton discordButton = new JButton("<html><img src=https://www.worldautomation.net/images/launcher-discord.png>");
 	container.add(discordButton);
 	discordButton.addActionListener(ActionListeners.openURL(this, "https://discord.gg/Dvjvtee"));
+	
+	JButton websiteButton = new JButton("<html><img src=https://www.worldautomation.net/images/launcher-web.png>");
+	container.add(websiteButton);
+	websiteButton.addActionListener(ActionListeners.openURL(this, "https://www.worldautomation.net"));
 
 	JButton logButton = new JButton("<html><img src=https://www.worldautomation.net/images/launcher-log.png>");
 	container.add(logButton);
@@ -220,6 +229,98 @@ public class LauncherFrame extends JFrame {
                 popupInstanceMenu(e.getComponent(), e.getX(), e.getY(), selected);
             }
         });
+		websiteButton.addMouseListener(new java.awt.event.MouseAdapter() {
+			public void mouseEntered(java.awt.event.MouseEvent evt) {
+				websiteButton.setText("WEB");
+				websiteButton.setBackground(Color.GREEN);
+				websiteButton.setPreferredSize(new Dimension(50, 39));
+			}
+
+			public void mouseExited(java.awt.event.MouseEvent evt) {
+				websiteButton.setBackground(UIManager.getColor("control"));
+				websiteButton.setText("<html><img src=https://www.worldautomation.net/images/launcher-web.png>");
+				websiteButton.setPreferredSize(new Dimension(50, 30));
+			}
+		});
+		logButton.addMouseListener(new java.awt.event.MouseAdapter() {
+			public void mouseEntered(java.awt.event.MouseEvent evt) {
+				logButton.setText("LOG");
+				logButton.setBackground(Color.GREEN);
+				logButton.setPreferredSize(new Dimension(50, 39));
+			}
+
+			public void mouseExited(java.awt.event.MouseEvent evt) {
+				logButton.setBackground(UIManager.getColor("control"));
+				logButton.setText("<html><img src=https://www.worldautomation.net/images/launcher-log.png>");
+				logButton.setPreferredSize(new Dimension(50, 30));
+			}
+		});
+		launchButton.addMouseListener(new java.awt.event.MouseAdapter() {
+			public void mouseEntered(java.awt.event.MouseEvent evt) {
+				launchButton.setText("PLAY");
+				launchButton.setBackground(Color.GREEN);
+				launchButton.setPreferredSize(new Dimension(50, 39));
+			}
+
+			public void mouseExited(java.awt.event.MouseEvent evt) {
+				launchButton.setBackground(UIManager.getColor("control"));
+				launchButton.setText("<html><img src=https://www.worldautomation.net/images/launcher-launch.png>");
+				launchButton.setPreferredSize(new Dimension(50, 30));
+			}
+		});
+		optionsButton.addMouseListener(new java.awt.event.MouseAdapter() {
+			public void mouseEntered(java.awt.event.MouseEvent evt) {
+				optionsButton.setText("OPTIONS");
+				optionsButton.setBackground(Color.GREEN);
+				optionsButton.setPreferredSize(new Dimension(50, 39));
+			}
+
+			public void mouseExited(java.awt.event.MouseEvent evt) {
+				optionsButton.setBackground(UIManager.getColor("control"));
+				optionsButton.setText("<html><img src=https://www.worldautomation.net/images/launcher-options.png>");
+				optionsButton.setPreferredSize(new Dimension(50, 30));
+			}
+		});
+		specsUpdateButton.addMouseListener(new java.awt.event.MouseAdapter() {
+			public void mouseEntered(java.awt.event.MouseEvent evt) {
+				specsUpdateButton.setText("SPECS");
+				specsUpdateButton.setBackground(Color.GREEN);
+				specsUpdateButton.setPreferredSize(new Dimension(50, 39));
+			}
+
+			public void mouseExited(java.awt.event.MouseEvent evt) {
+				specsUpdateButton.setBackground(UIManager.getColor("control"));
+				specsUpdateButton.setText("<html><img src=https://www.worldautomation.net/images/launcher-specs.png>");
+				specsUpdateButton.setPreferredSize(new Dimension(50, 30));
+			}
+		});
+		refreshButton.addMouseListener(new java.awt.event.MouseAdapter() {
+			public void mouseEntered(java.awt.event.MouseEvent evt) {
+				refreshButton.setText("UPDATE");
+				refreshButton.setBackground(Color.GREEN);
+				refreshButton.setPreferredSize(new Dimension(50, 39));
+			}
+
+			public void mouseExited(java.awt.event.MouseEvent evt) {
+				refreshButton.setBackground(UIManager.getColor("control"));
+				refreshButton.setText("<html><img src=https://www.worldautomation.net/images/launcher-refresh.png>");
+				//refreshButton.setPreferredSize(new Dimension(50, 30));				
+			}
+		});	
+		discordButton.addMouseListener(new java.awt.event.MouseAdapter() {
+			public void mouseEntered(java.awt.event.MouseEvent evt) {
+				discordButton.setText("CHAT");
+				discordButton.setBackground(Color.GREEN);
+				discordButton.setPreferredSize(new Dimension(50, 39));
+			}
+
+			public void mouseExited(java.awt.event.MouseEvent evt) {
+				discordButton.setBackground(UIManager.getColor("control"));
+				discordButton.setText("<html><img src=https://www.worldautomation.net/images/launcher-discord.png>");
+				//discordButton.setPreferredSize(new Dimension(50, 30));
+			}
+		});
+		
 	}
 
     protected JPanel createContainerPanel() {

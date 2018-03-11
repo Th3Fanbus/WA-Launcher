@@ -97,12 +97,17 @@ public class InstanceTableModel extends AbstractTableModel {
         switch (columnIndex) {
             case 0:
                 instance = instances.get(rowIndex);
+				String waMain = "WorldAutomation.Net";
+				String compare = instance.getName().toLowerCase();
                 if (!instance.isLocal()) {
                     return downloadIcon;
-                } else if (instance.getManifestURL() != null) {
-                    return instanceIcon;
-                } else {
+                } else if (compare.contains(waMain.toLowerCase())) {
+					//JOptionPane.showMessageDialog(null, instance.getName());
                     return customInstanceIcon;
+					
+                } else {
+					//JOptionPane.showMessageDialog(null, instance.getName());
+                    return instanceIcon;
                 }
             case 1:
                 instance = instances.get(rowIndex);

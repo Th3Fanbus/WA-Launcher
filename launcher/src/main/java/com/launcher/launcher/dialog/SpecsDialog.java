@@ -51,25 +51,25 @@ public class SpecsDialog extends JDialog {
         final String memStr = FormatUtil.formatBytes(memory.getAvailable()) + " / " + FormatUtil.formatBytes(memory.getTotal());
         final String swapStr = FormatUtil.formatBytes(memory.getSwapUsed()) + " / " + FormatUtil.formatBytes(memory.getSwapTotal());
         
-        final String labelOpts = "align left, wrap";
+        final String labelOpts = "align center, wrap";
         JPanel container = new JPanel();
         container.setLayout(new MigLayout("insets dialog"));
         
         container.add(new JLabel("<html><img src=https://www.worldautomation.net/images/launcher-about.png>"), "align center, wrap");
-        container.add(new JLabel("<html><h2>System specifications summary</h2><br>"), "align center, wrap");
-        container.add(new JLabel("<html><b>Computer manufacturer: </b>" + computerSystem.getManufacturer() + "<br>"), labelOpts);
-        container.add(new JLabel("<html><b>Computer manufacturer: </b>" + computerSystem.getModel() + "<br>"), labelOpts);
+        container.add(new JLabel("<html><h2>System Specifications Summary</h2><br>"), "align center, wrap");
+        container.add(new JLabel("<html><b>Computer Manufacturer: </b>" + computerSystem.getManufacturer() + "<br>"), labelOpts);
+        container.add(new JLabel("<html><b>Computer Manufacturer: </b>" + computerSystem.getModel() + "<br>"), labelOpts);
         container.add(new JLabel("<html><b>Motherboard: </b>" + mbStr + "<br>"), labelOpts);
         container.add(new JLabel("<html><b>Firmware: </b>" + firmware.getManufacturer() + " version " + firmware.getVersion() + "<br>"), labelOpts);
         container.add(new JLabel("<html><b>CPU: </b>" + cpuStr + "<br>"), labelOpts);
-        container.add(new JLabel("<html><b>CPU identifier: </b>" + processor.getIdentifier() + "<br>"), labelOpts);
-        container.add(new JLabel("<html><b>CPU temperature: </b>" + String.format("%.1f°C%n", hal.getSensors().getCpuTemperature()) + "<br>"), labelOpts);
+        container.add(new JLabel("<html><b>CPU Identifier: </b>" + processor.getIdentifier() + "<br>"), labelOpts);
+        container.add(new JLabel("<html><b>CPU Temperature: </b>" + String.format("%.1f°C%n", hal.getSensors().getCpuTemperature()) + "<br>"), labelOpts);
         container.add(new JLabel("<html><b>Memory: </b>" + memStr + "<br>"), labelOpts);
         container.add(new JLabel("<html><b>Swap: </b>" + swapStr + "<br>"), labelOpts);
-        container.add(new JLabel("<html><b>Operating system: </b>" + osStr + "<br>"), labelOpts);
+        container.add(new JLabel("<html><b>Operating System: </b>" + osStr + "<br>"), labelOpts);
         container.add(new JLabel("<html><b>Uptime: </b>" + FormatUtil.formatElapsedSecs(processor.getSystemUptime()) + " (HH:MM:SS) <br>"), labelOpts);
-        container.add(new JLabel("<html><b>Java version: </b>" + javaStr + "<br>"), labelOpts);
-        container.add(new JLabel("<html><b>Java bitness: </b>" + System.getProperty("sun.arch.data.model") + "<br><br>"), labelOpts);
+        container.add(new JLabel("<html><b>Java Version: </b>" + javaStr + "<br>"), labelOpts);
+        container.add(new JLabel("<html><b>Java Architecture: </b>" + System.getProperty("sun.arch.data.model") + "-Bit<br><br>"), labelOpts);
         container.add(new JLabel("<html><br><br>"), "align left, wrap");
         
 	//JButton discordButton = new JButton("<html><img src=https://www.worldautomation.net/images/launcher-about-discord.png>");
