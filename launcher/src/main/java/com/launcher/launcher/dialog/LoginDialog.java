@@ -29,7 +29,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.concurrent.Callable;
 
-/*
+/**
  * The login dialog.
  */
 public class LoginDialog extends JDialog {
@@ -42,7 +42,6 @@ public class LoginDialog extends JDialog {
     private final JPasswordField passwordText = new JPasswordField();
     private final JCheckBox rememberIdCheck = new JCheckBox(SharedLocale.tr("login.rememberId"));
     private final JCheckBox rememberPassCheck = new JCheckBox(SharedLocale.tr("login.rememberPassword"));
-    private final JCheckBox offLineQuestion = new JCheckBox(SharedLocale.tr("login.offText"));
     private final JButton loginButton = new JButton(SharedLocale.tr("login.login"));
     private final LinkButton recoverButton = new LinkButton(SharedLocale.tr("login.recoverAccount"));
     private final JButton offlineButton = new JButton(SharedLocale.tr("login.playOffline"));
@@ -50,7 +49,7 @@ public class LoginDialog extends JDialog {
     private final FormPanel formPanel = new FormPanel();
     private final LinedBoxPanel buttonsPanel = new LinedBoxPanel(true);
 
-    /*
+    /**
      * Create a new login dialog.
      *
      * @param owner the owner
@@ -92,7 +91,6 @@ public class LoginDialog extends JDialog {
 
         rememberIdCheck.setBorder(BorderFactory.createEmptyBorder());
         rememberPassCheck.setBorder(BorderFactory.createEmptyBorder());
-		offLineQuestion.setBorder(BorderFactory.createEmptyBorder());
         idCombo.setEditable(true);
         idCombo.getEditor().selectAll();
 
@@ -102,23 +100,21 @@ public class LoginDialog extends JDialog {
         formPanel.addRow(new JLabel(SharedLocale.tr("login.password")), passwordText);
         formPanel.addRow(new JLabel(), rememberIdCheck);
         formPanel.addRow(new JLabel(), rememberPassCheck);
-        formPanel.addRow(new JLabel(), offLineQuestion);
-
         buttonsPanel.setBorder(BorderFactory.createEmptyBorder(26, 13, 13, 13));
 
-//        if (launcher.getConfig().isOfflineEnabled()) {
-//            buttonsPanel.addElement(offlineButton);
-//            buttonsPanel.addElement(Box.createHorizontalStrut(2));
-//        }
-        //buttonsPanel.addElement(recoverButton);
+        if (launcher.getConfig().isOfflineEnabled()) {
+            buttonsPanel.addElement(offlineButton);
+            buttonsPanel.addElement(Box.createHorizontalStrut(2));
+        }
+        buttonsPanel.addElement(recoverButton);
         buttonsPanel.addGlue();
-        buttonsPanel.addElement(cancelButton);
         buttonsPanel.addElement(loginButton);
+        buttonsPanel.addElement(cancelButton);
 
         add(formPanel, BorderLayout.CENTER);
         add(buttonsPanel, BorderLayout.SOUTH);
 
-        getRootPane().setDefaultButton(offlineButton);
+        getRootPane().setDefaultButton(loginButton);
 
         passwordText.setComponentPopupMenu(TextFieldPopupMenu.INSTANCE);
 
@@ -142,30 +138,15 @@ public class LoginDialog extends JDialog {
         loginButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(!offLineQuestion.isSelected()) {
-					prepareLogin();
-				} else {
-					Object selected = idCombo.getSelectedItem();
-					String account = idCombo.getSelectedItem().toString();
-
-					// JOptionPane.showMessageDialog(null, account);
-					setResult(new OfflineSession(account));
-					removeListeners();
-					dispose();					
-				}
-			}
+                prepareLogin();
+            }
         });
 
         offlineButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // setResult(new OfflineSession(launcher.getProperties().getProperty("offlinePlayerName")));
-                Object selected = idCombo.getSelectedItem();
-				String account = idCombo.getSelectedItem().toString();
-
-				// JOptionPane.showMessageDialog(null, account);
-				setResult(new OfflineSession(account));
-				removeListeners();
+                setResult(new OfflineSession(launcher.getProperties().getProperty("offlinePlayerName")));
+                removeListeners();
                 dispose();
             }
         });
@@ -195,21 +176,6 @@ public class LoginDialog extends JDialog {
                 }
             }
         });
-		
-        offLineQuestion.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if (!offLineQuestion.isSelected()) {
-                    offLineQuestion.setSelected(false);
-					passwordText.setEnabled(true);
-					setTitle("Mojang AUTH Enabled - Non-Cracked Mode");
-					//new JLabel("Test"), idCombo);
-                } else {
-					passwordText.setEnabled(false);
-					setTitle("Mojang AUTH Disabled - Cracked Mode");
-				}
-            }
-        });		
     }
 
     private void popupManageMenu(Component component, int x, int y) {
