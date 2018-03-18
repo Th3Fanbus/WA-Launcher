@@ -52,7 +52,7 @@ public class LauncherFrame extends JFrame {
     private final JButton refreshButton = new JButton("<html><img src=https://www.worldautomation.net/images/launcher-refresh.png>");
     private final JButton optionsButton = new JButton("<html><img src=https://www.worldautomation.net/images/launcher-options.png>");
     private final JButton specsUpdateButton = new JButton("<html><img src=https://www.worldautomation.net/images/launcher-specs.png>");
-	private final JButton websiteButton = new JButton("<html><img src=https://www.worldautomation.net/images/launcher-web.png>");
+    private final JButton websiteButton = new JButton("<html><img src=https://www.worldautomation.net/images/launcher-web.png>");
     private final JCheckBox updateCheck = new JCheckBox(SharedLocale.tr("launcher.downloadUpdates"));
     private boolean isUpdateable = false;
 
@@ -139,9 +139,9 @@ public class LauncherFrame extends JFrame {
 	container.add(discordButton);
 	discordButton.addActionListener(ActionListeners.openURL(this, "https://discord.gg/Dvjvtee"));
 	
-	JButton websiteButton = new JButton("<html><img src=https://www.worldautomation.net/images/launcher-web.png>");
-	container.add(websiteButton);
-	websiteButton.addActionListener(ActionListeners.openURL(this, "https://www.worldautomation.net"));
+	JButton webButton = new JButton("<html><img src=https://www.worldautomation.net/images/launcher-web.png>");
+	container.add(webButton);
+	webButton.addActionListener(ActionListeners.openURL(this, "https://www.worldautomation.net"));
 
 	JButton logButton = new JButton("<html><img src=https://www.worldautomation.net/images/launcher-log.png>");
 	container.add(logButton);
@@ -229,17 +229,17 @@ public class LauncherFrame extends JFrame {
                 popupInstanceMenu(e.getComponent(), e.getX(), e.getY(), selected);
             }
         });
-		websiteButton.addMouseListener(new java.awt.event.MouseAdapter() {
+		webButton.addMouseListener(new java.awt.event.MouseAdapter() {
 			public void mouseEntered(java.awt.event.MouseEvent evt) {
-				websiteButton.setText("WEB");
-				websiteButton.setBackground(Color.GREEN);
-				websiteButton.setPreferredSize(new Dimension(50, 39));
+				webButton.setText("WEB");
+				webButton.setBackground(Color.GREEN);
+				webButton.setPreferredSize(new Dimension(50, 39));
 			}
 
 			public void mouseExited(java.awt.event.MouseEvent evt) {
-				websiteButton.setBackground(UIManager.getColor("control"));
-				websiteButton.setText("<html><img src=https://www.worldautomation.net/images/launcher-web.png>");
-				websiteButton.setPreferredSize(new Dimension(50, 30));
+				webButton.setBackground(UIManager.getColor("control"));
+				webButton.setText("<html><img src=https://www.worldautomation.net/images/launcher-web.png>");
+				webButton.setPreferredSize(new Dimension(50, 30));
 			}
 		});
 		logButton.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -283,14 +283,18 @@ public class LauncherFrame extends JFrame {
 		});
 		specsUpdateButton.addMouseListener(new java.awt.event.MouseAdapter() {
 			public void mouseEntered(java.awt.event.MouseEvent evt) {
-				specsUpdateButton.setText("SPECS");
+				specsUpdateButton.setText(isUpdateable ? "UPDATE" : "SPECS");
 				specsUpdateButton.setBackground(Color.GREEN);
 				specsUpdateButton.setPreferredSize(new Dimension(50, 39));
 			}
 
 			public void mouseExited(java.awt.event.MouseEvent evt) {
 				specsUpdateButton.setBackground(UIManager.getColor("control"));
-				specsUpdateButton.setText("<html><img src=https://www.worldautomation.net/images/launcher-specs.png>");
+                                if (isUpdateable) {
+                                    specsUpdateButton.setText("<html><img src=https://www.worldautomation.net/images/launcher-update.png>");
+                                } else {
+                                    specsUpdateButton.setText("<html><img src=https://www.worldautomation.net/images/launcher-specs.png>");
+                                }
 				specsUpdateButton.setPreferredSize(new Dimension(50, 30));
 			}
 		});
