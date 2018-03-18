@@ -28,14 +28,29 @@ public class SpecsDialog extends JDialog {
     public SpecsDialog(Window parent) {
         super(parent, "Computer Specifications", ModalityType.DOCUMENT_MODAL);
 
+        initComponents(parent);
+    }
+
+    private void initComponents(Window parent) {
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-        initComponents();
         setResizable(false);
+        
+        JPanel container = new JPanel();
+        container.setLayout(new MigLayout("insets dialog"));
+        container.add(new JLabel("<html><h2>Loading System Specifications...</h2><br>"), "align center, wrap");
+        
+        add(container, BorderLayout.CENTER);
+        
+        pack();
+        setLocationRelativeTo(parent);
+        
+        loadSpecs(container);
+        
         pack();
         setLocationRelativeTo(parent);
     }
-
-    private void initComponents() {
+    
+    private void loadSpecs(JPanel oldContainer) {
         SystemInfo si = new SystemInfo();
         final HardwareAbstractionLayer hal = si.getHardware();
         final ComputerSystem computerSystem = hal.getComputerSystem();
@@ -48,7 +63,7 @@ public class SpecsDialog extends JDialog {
         final String cpuStr = processor + " (" + processor.getPhysicalProcessorCount() + " cores, " + processor.getLogicalProcessorCount() + " threads)";
         final String osStr = System.getProperty("os.name") + " version " + System.getProperty("os.version") + " " + System.getProperty("os.arch");
         final String javaStr = System.getProperty("java.vendor") + " " + System.getProperty("java.vm.name") + " " + System.getProperty("java.version") ;
-        final String memStr = FormatUtil.formatBytes(memory.getAvailable()) + " / " + FormatUtil.formatBytes(memory.getTotal());
+        final String memStr = FormatUtil.formatBytes(memory.getTotal() - memory.getAvailable()) + " / " + FormatUtil.formatBytes(memory.getTotal());
         final String swapStr = FormatUtil.formatBytes(memory.getSwapUsed()) + " / " + FormatUtil.formatBytes(memory.getSwapTotal());
         
         final String labelOpts = "align center, wrap";
@@ -72,28 +87,27 @@ public class SpecsDialog extends JDialog {
         container.add(new JLabel("<html><b>Java Architecture: </b>" + System.getProperty("sun.arch.data.model") + "-Bit<br><br>"), labelOpts);
         container.add(new JLabel("<html><br><br>"), "align left, wrap");
         
-	//JButton discordButton = new JButton("<html><img src=https://www.worldautomation.net/images/launcher-about-discord.png>");
-	//container.add(discordButton, "align center, wrap");
-	//discordButton.addActionListener(ActionListeners.openURL(this, "https://discord.gg/Dvjvtee"));
-		
-        //JButton sourceCodeButton = new JButton("Website");      
-	//container.add(sourceCodeButton, "span, split 3, sizegroup bttn");
+        //JButton discordButton = new JButton("<html><img src=https://www.worldautomation.net/images/launcher-about-discord.png>");
+        //container.add(discordButton, "align center, wrap");
+        //discordButton.addActionListener(ActionListeners.openURL(this, "https://discord.gg/Dvjvtee"));
+        
+        //JButton sourceCodeButton = new JButton("Website");
+        //container.add(sourceCodeButton, "span, split 3, sizegroup bttn");
         //sourceCodeButton.addActionListener(ActionListeners.openURL(this, "https://www.worldautomation.net"));
         
-	JButton okButton = new JButton("OK");
+        JButton okButton = new JButton("OK");
         container.add(okButton, "tag ok, sizegroup bttn");
         
+        remove(oldContainer);
         add(container, BorderLayout.CENTER);
         
         getRootPane().setDefaultButton(okButton);
-        getRootPane().registerKeyboardAction(ActionListeners.dispose(this), KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_IN_FOCUSED_WINDOW);
-
         okButton.addActionListener(ActionListeners.dispose(this));
+        getRootPane().registerKeyboardAction(ActionListeners.dispose(this), KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_IN_FOCUSED_WINDOW);
     }
 
     public static void showSpecsDialog(Window parent) {
         SpecsDialog dialog = new SpecsDialog(parent);
-        dialog.setVisible(true);
     }
 }
 

@@ -24,7 +24,7 @@ subprojects {
 
 
     group = 'com.launcher'
-    version = '6.3.0'
+    version = '6.4.2.1'
 
     sourceCompatibility = 1.8
     targetCompatibility = 1.8

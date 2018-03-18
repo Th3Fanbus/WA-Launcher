@@ -1,6 +1,4 @@
 JJ=java -jar
-LAUNCHER=launcher-*-all.jar
-LAUNCHER_MAIN=launcher-main-*-all.jar
 
 all: Launcher
 
@@ -11,7 +9,7 @@ clean:
 	./gradlew clean
 
 run:
-	$(JJ) ./launcher/build/libs/$(LAUNCHER)
+	$(JJ) ./launcher/build/libs/launcher-*-all.jar
 
-run-main:
-	$(JJ) ./launcher-main/build/libs/$(LAUNCHER_MAIN)
+pack: Launcher
+	./pack_and_push.sh

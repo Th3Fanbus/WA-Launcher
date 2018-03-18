@@ -152,6 +152,7 @@ $RECYCLE.BIN/
 
 # Compiled jar files which change constantly
 launcher*.jar
+*.pack
 
 # Launcher folders
 launcher/instances/
