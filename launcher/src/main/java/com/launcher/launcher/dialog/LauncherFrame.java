@@ -52,7 +52,7 @@ public class LauncherFrame extends JFrame {
     private final JButton refreshButton = new JButton("<html><img src=https://www.worldautomation.net/images/launcher-refresh.png>");
     private final JButton optionsButton = new JButton("<html><img src=https://www.worldautomation.net/images/launcher-options.png>");
     private final JButton specsUpdateButton = new JButton("<html><img src=https://www.worldautomation.net/images/launcher-specs.png>");
-    private final JButton websiteButton = new JButton("<html><img src=https://www.worldautomation.net/images/launcher-web.png>");
+    //private final JButton websiteButton = new JButton("<html><img src=https://www.worldautomation.net/images/launcher-web.png>");
     private final JCheckBox updateCheck = new JCheckBox(SharedLocale.tr("launcher.downloadUpdates"));
     private boolean isUpdateable = false;
 
@@ -140,8 +140,8 @@ public class LauncherFrame extends JFrame {
 	discordButton.addActionListener(ActionListeners.openURL(this, "https://discord.gg/Dvjvtee"));
 	
 	JButton webButton = new JButton("<html><img src=https://www.worldautomation.net/images/launcher-web.png>");
-	container.add(webButton);
-	webButton.addActionListener(ActionListeners.openURL(this, "https://www.worldautomation.net"));
+	//container.add(webButton);
+	//webButton.addActionListener(ActionListeners.openURL(this, "https://www.worldautomation.net"));
 
 	JButton logButton = new JButton("<html><img src=https://www.worldautomation.net/images/launcher-log.png>");
 	container.add(logButton);
