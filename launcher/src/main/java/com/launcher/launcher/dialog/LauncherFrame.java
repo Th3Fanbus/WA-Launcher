@@ -140,8 +140,8 @@ public class LauncherFrame extends JFrame {
 	discordButton.addActionListener(ActionListeners.openURL(this, "https://discord.gg/Dvjvtee"));
 	
 	JButton webButton = new JButton("<html><img src=https://www.worldautomation.net/images/launcher-web.png>");
-	//container.add(webButton);
-	//webButton.addActionListener(ActionListeners.openURL(this, "https://www.worldautomation.net"));
+	container.add(webButton);
+	webButton.addActionListener(ActionListeners.openURL(this, "https://www.worldautomation.net"));
 
 	JButton logButton = new JButton("<html><img src=https://www.worldautomation.net/images/launcher-log.png>");
 	container.add(logButton);

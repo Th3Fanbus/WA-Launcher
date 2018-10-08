@@ -63,8 +63,10 @@ public class ConsoleFrame extends JFrame {
 
         setTitle(title);
         setIconImage(trayRunningIcon);
-
-        setSize(new Dimension(700, 600));
+		
+		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+		
+        setSize(new Dimension((int) dim.getWidth(), 200));
         initComponents();
 
         setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
