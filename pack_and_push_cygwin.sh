@@ -1,6 +1,6 @@
 #!/bin/sh
 VERSION=$(echo ./launcher/build/libs/launcher-*-all.jar | cut -d- -f2)
-pack200 --no-gzip $(echo ./launcher/build/libs/launcher-*-all.jar | cut -d- -f2).pack ./launcher/build/libs/launcher-*-all.jar
+/cygdrive/c/Program\ Files/Java/jdk1.8.0_181/bin/pack200.exe --no-gzip $(echo ./launcher/build/libs/launcher-*-all.jar | cut -d- -f2).pack ./launcher/build/libs/launcher-*-all.jar
 scp -P 2202 $(echo ./launcher/build/libs/launcher-*-all.jar | cut -d- -f2).pack root@worldautomation.net:/storage/WA-Web-Pack/launcher/versions/.
 #updated path to current
 ssh -p 2202 root@worldautomation.net "rm /storage/WA-Web-Pack/launcher/latest.json;sed 's/UPDATE/$VERSION/g' /storage/WA-Web-Pack/launcher/template.json >> /storage/WA-Web-Pack/launcher/latest.json"
