@@ -166,3 +166,6 @@ launcher/build/scriptsShadow/
 instances/
 /launcher-updater/build/
 /launcher/build/
+
+# Packs build During pack_and_push (also removed after upload but just in case we ignore them here)
+*.pack
